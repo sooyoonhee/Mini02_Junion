@@ -1,0 +1,503 @@
+:root 
+{
+  /* 컬러 모음 */
+  --main-color:#FFA500;
+  --color-black: #111;
+  --color-white: #fff;
+  --color-gray: #787878;
+  --input-gray: #e5e5ec;
+  --button-gray: #f7f7f7;
+  --border-color-gray: #dadada;
+  --font-size32: 32px;
+  --font-size24: 24px;
+  --font-size20: 20px;
+  --font-size16: 16px;
+  --font-size14: 14px;
+  --font-size12: 12px;
+}
+
+
+/*    섹션    */
+
+section 
+{
+    display: flex;
+    justify-content: center;
+
+}
+
+.wrap
+{
+    min-width: 1200px;
+    padding: 70px 0;
+    box-sizing: border-box;
+    display: flex;
+	margin-top: 90px;
+}
+
+.wrap .left
+{
+    max-width: 720px ;
+    justify-content: left;
+    
+}
+
+
+.wrap .left .company
+{
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 32px;
+
+}
+
+.wrap .left .company .imgg
+{   
+    width: 720px;
+    border-radius: 15px;
+
+
+    /* margin-left: auto;
+    align-items: top; */
+}
+
+.wrap .main
+{
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 58px;
+}
+
+
+/* 서브 1 시작 */
+
+
+.wrap .main .sub1
+{
+    max-width: 620px ;
+    max-height: 100px ;
+    margin-right: auto;
+
+    color: var(--color-grayblack);
+    font-weight: 200;
+
+}
+
+
+
+/* .ageSex 
+{
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.ageSex .age 
+{
+  margin-right: 12px;
+} */
+
+
+.wrap .main .sub1 .name,
+.wrap .main .sub1 .locationC
+{
+    font-size: var(--font-size20);
+    font-weight: 200;
+}
+.wrap .main .sub1 .title
+{
+    font-weight: 600;
+}
+
+.wrap .main .sub1 .locationC
+{
+    font-size: var(--font-size16);
+
+}
+.wrap .main .sub1 .title
+{
+    font-size: var(--font-size24);
+}
+
+.wrap .main .sub1 .name
+{
+    padding-bottom: 20px;
+}
+
+/* 서브 2 시작 */
+
+.wrap .main .sub2
+{
+    max-width: 90px ;
+}
+
+
+/* .wrap .main .sub2 .icon
+{
+    font-size:20px;
+} */
+
+
+
+
+
+
+.wrap .column
+{
+    display: grid; grid-template-columns: 1fr; gap: 70px; 
+    min-width: 720px; min-height: 400px;
+
+}
+
+.wrap .column .columnA
+{
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--input-gray);
+
+}
+.wrap .column .border
+{
+
+}
+
+
+.wrap .column .columnAA,
+.wrap .column .col8 .content
+{
+    font-size: var(--font-size16);
+    color: var(--color-gray);
+    margin-top: 20px;
+    
+}
+.wrap .column .columnBB
+{
+    font-size: var(--font-size16);
+    color: var(--color-gray);
+    margin-top: 20px;
+}
+
+
+.wrap .column .columnA .title
+{
+    font-weight: 100;
+    font-size: var(--font-size20);
+
+}
+.wrap .column .columnAA .detail
+{
+    font-weight: 100;
+
+}
+.wrap .column .columnAA .detail,
+.wrap .column .col8 .comname1 .name,
+.wrap .column .col8 .comname2 .name
+
+{
+    font-weight: 100;
+    font-size: var(--font-size16);
+    color: var(--color-gray);
+
+}
+
+
+
+
+.wrap .column .col8 .content
+{
+    display: grid; grid-template-columns: 1fr 1fr; grid-row-gap: 16px;
+
+}
+
+.wrap .column .col7 .loc
+{
+    font-size: var(--font-size14);
+    font-weight: 100;
+    color: var(--color-black);
+
+}
+    
+.wrap .column .col7 .columnBB .kakaomap
+{
+    border-radius: 6px;
+}
+
+.wrap .column .col7 .columnBB .loc
+{
+    margin: 10px 6px;
+    font-size: var(--font-size14);
+    font-weight: 100;
+}
+
+.wrap .column .col8 .comname2
+{
+    
+    margin-left: auto;
+}
+
+/* .wrap
+{
+    min-width: 1200px;
+    padding: 50px 0;
+    box-sizing: border-box;
+}
+
+.wrap .left
+{
+    max-width: 720px ;
+    justify-content: left;
+    
+}
+
+
+.wrap .left .company
+{
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 32px;
+
+} */
+
+
+
+.columnAA .detail .sectionConBody .Bodycon button.tech 
+{
+  margin: 10px 12px 10px 0;
+  border: 1px solid var(--input-gray);
+  border-radius: 6px;
+  padding: 12px 20px;
+  width: initial;
+  cursor: pointer;
+  &:hover 
+  {
+      background: var(--main-color);
+      color: #fff;
+  }
+}
+
+
+.columnAA .detail
+{
+    font-size: var(--font-size16);
+    font-weight: 200px;
+}
+
+.wrap .columnAA .tech .mm1 {
+    color: var(--color-grayblack);
+    font-size: var(--font-size14);
+    font-weight: 200;
+}
+
+
+/* 라이트 시작 */
+
+.wrap .right
+{
+    
+    margin-left: auto;  
+    min-width: 375px;
+}
+
+
+
+
+.wrap .right .box2,
+.wrap .right .box4
+{
+    margin-top: 10px;
+    
+}
+
+
+
+.wrap .right .box2 .box,
+.wrap .right .box3 .box,
+.wrap .right .box4 .box
+{
+    margin-top: 10px;
+    
+    
+}
+
+
+
+
+
+.wrap .right .side
+{
+    align-items: flex-start;
+}
+
+.wrap .right  .box2,
+.wrap .right  .box3
+{
+    margin: 10px 12px 10px 0;
+    border: 1px solid var(--input-gray);
+    border-radius: 15px;
+    padding: 12px 20px;
+    width: initial;
+    display: flex;
+}
+
+.wrap .right .pos .box3
+{
+
+    justify-content: center;
+
+    min-width: 375px;
+    
+
+}
+
+
+
+
+.wrap .right .box2 .box
+{
+    /* max-height: 100px ; */
+    margin-right: auto;
+    color: var(--color-grayblack);
+    font-weight: 200;
+    max-width: 290px;
+    
+}
+
+.wrap .right .box3 .m1,
+.wrap .right .box3 .m2
+{
+    font-size: var(--font-size14);
+
+}
+
+
+/* max-width: 340px; */
+
+
+.wrap  .right  .t,
+.wrap .right .box2 .t1,
+.wrap .right .box2 .t2,
+.wrap .right .box2 .t3,
+.wrap .right .box3 .p1,
+.wrap .right .box4 .p1
+{
+    font-size: var(--font-size16);
+    font-weight: 200;
+}
+
+
+
+
+.wrap .right .box2 .t1
+{
+    margin-bottom: 10px;
+}
+.wrap .right .box2 .t2
+{
+    margin-bottom: 20px;
+}
+.wrap .right .box2 .t3
+{
+    font-size: var(--font-size14);
+    margin-bottom: 13px;
+}
+.wrap .right .boxbox
+{
+    margin-top: 10px;
+}
+
+
+
+
+
+/* max-width: 620px ;
+max-height: 100px ;
+margin-right: auto;
+
+color: var(--color-grayblack);
+font-weight: 200; */
+
+
+
+.wrap .right .box3 .m1
+{
+    color: var(--color-grayblack);
+    font-weight: 500;
+
+}
+
+.wrap .right .box3 .m2
+{
+    color: var(--color-grayblack);
+    font-weight: 500;
+}
+
+
+
+
+.columnAA .detail .sectionConBody .Bodycon.tech 
+{
+  display: block;
+  max-width: 1200px;
+}
+
+
+
+/* 라이트 버튼시작*/
+.pos
+{
+    display: flex;
+    justify-content: center;
+}
+
+
+.pos .box3
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &:hover 
+    {
+        background: var(--main-color);
+        color: #fff;
+    }
+}
+
+.box3
+{
+    border: 1px solid var(--input-gray);
+    border-radius: 6px;
+    height: 46px;
+    width: 375px;
+    margin: 0 8px;
+
+}
+.pos .m1
+{
+    font-size: var(--font-size18);
+    font-weight: 200;
+    /* line-height: 2; */
+    
+}
+/*버튼끝*/
+
+
+
+
+
+
+
+
+
+/* 라이트 끝 */
+
+
+
+
+
+
+
+
+
+
+
+

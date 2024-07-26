@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.PageDAO">   
+   <!-- <![CDATA[]]> : mybatis에서 특수문자 인식 처리 -->
+    <select id="listWithPaging" resultType="com.boot.DTO.ResumeDTO">
+	    <![CDATA[
+		        select 	rownum, user_email, resume_num, resume_title, resume_pay, resume_offer, career_start, career_end,
+					    CONCAT(
+				        FLOOR(period_diff(DATE_FORMAT(career_end, '%Y%m'), DATE_FORMAT(career_start, '%Y%m')) / 12), '년 ', 
+				        period_diff(DATE_FORMAT(career_end, '%Y%m'), DATE_FORMAT(career_start, '%Y%m')) % 12, '개월') AS career_month 
+			from( select 	rownum, user_email, resume_num, resume_title, resume_pay, resume_offer, career_start, career_end,
+						    CONCAT(
+					        FLOOR(period_diff(DATE_FORMAT(career_end, '%Y%m'), DATE_FORMAT(career_start, '%Y%m')) / 12), '년 ', 
+					        period_diff(DATE_FORMAT(career_end, '%Y%m'), DATE_FORMAT(career_start, '%Y%m')) % 12, '개월') AS career_month  
+			from (select row_number() over(order by resume_num desc) as rownum,
+							user_email, resume_num, resume_title, resume_pay, resume_offer, career_start, career_end,
+						    CONCAT(
+					        FLOOR(period_diff(DATE_FORMAT(career_end, '%Y%m'), DATE_FORMAT(career_start, '%Y%m')) / 12), '년 ', 
+					        period_diff(DATE_FORMAT(career_end, '%Y%m'), DATE_FORMAT(career_start, '%Y%m')) % 12, '개월') AS career_month  
+			                from resume_tb where user_email=#{user_email}
+			                order by resume_num desc) a
+			where rownum <= (#{pageNum} * #{amount})
+			) aa
+			where rownum > (#{pageNum}-1)*#{amount};    
+	    ]]>
+    </select>    
+    <select id="getTotalCount" resultType="int">
+	    select count(*) from resume_tb where user_email=#{user_email}
+    </select>    
+    
+    
+    
+</mapper>

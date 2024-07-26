@@ -1,0 +1,68 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.boardBoardDAO">
+    <select id="boardList" resultType="com.boot.DTO.boardBoardDTO"> <!-- 리스트 목록 페이지-->
+		select substr(user_email,1,instr(user_email,'@')-1) as user_email, 
+        board_no, board_title, board_content, replace(substr(create_date, 6, 5), '-','.')  as create_date, board_hit, 
+        board_like, user_type 
+        from user_board order by board_no desc
+
+    </select>
+    
+<!--    <insert id="write">-->
+<!--    	<selectKey keyProperty="boardNo" order="BEFORE" resultType="int">-->
+<!--    		select ifnull(max(boardNo),0)+1 from tbl_board-->
+<!--    	</selectKey>-->
+<!--		insert into tbl_board(boardName, boardTitle, boardContent, boardHit) -->
+<!--		values(#{boardName},#{boardTitle},#{boardContent},0)-->
+<!--    </insert>-->
+    <insert id="boardWrite"> <!-- 글 작성 버튼 -->
+    	<selectKey keyProperty="board_no" order="BEFORE" resultType="int">
+    		select ifnull(max(board_no),0)+1 from user_board
+    	</selectKey>
+		insert into user_board(board_no, user_email, board_title, board_content, board_hit, board_like) 
+				select ifnull(max(board_no),0)+1,'write@naver.com',#{board_title},#{board_content},0,0
+				  from user_board
+<!--		insert into user_board(board_no, user_email, board_title, board_content, board_hit, board_like) 
+				select ifnull(max(board_no),0)+1,#{user_email},#{board_title},#{board_content},0,0
+				  from user_board-->
+    </insert>
+				
+    <select id="boardDetailView" resultType="com.boot.DTO.boardBoardDTO"> <!-- 글 수정 페이지, 글 상세 페이지 (이 값들 가져와서 글 상세 페이지에도 넣어도 될것같음)-->
+        select board_no, user_email, board_title, board_content, create_date, board_hit, board_like from user_board where board_no=#{board_no}
+    </select>
+    <select id="boardModifyView" resultType="com.boot.DTO.boardBoardDTO"> <!-- 글 수정 페이지, 글 상세 페이지 (이 값들 가져와서 글 상세 페이지에도 넣어도 될것같음)-->
+        select board_no, user_email, board_title, board_content, create_date, board_hit, board_like from user_board where board_no=#{board_no}
+    </select>
+
+    
+    <update id="boardModify"> <!-- 글 수정 버튼 -->
+		update user_board set user_email='modify@naver.com', board_title=#{board_title}, board_content=#{board_content} where board_no=#{board_no}
+    </update>
+    
+    <delete id="boardDelete"> <!-- 글 삭제 버튼-->
+		delete from user_board where board_no=#{board_no}
+    </delete>
+    
+    
+    <update id="hitcount"> <!-- 조회수 증가 쿼리 -->
+	    UPDATE user_board
+		SET board_hit = board_hit + 1
+		WHERE board_no = #{board_no};
+    </update>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

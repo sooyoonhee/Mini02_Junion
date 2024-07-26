@@ -1,0 +1,102 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.CompanyInfoDAO">
+
+<!-- 	연주  -->
+    <select id="comList" resultType="com.boot.DTO.CompanyInfoDTO"> <!-- 기업 리스트 목록 페이지-->
+		  select com_email, com_pw, com_pw_check, com_name, com_serial_number, 
+		  user_type, com_tel, com_star, com_location, com_year, com_content, 
+		  com_sale, com_type, com_salary, com_CEO, com_site, com_employee, 
+		  com_person, com_job, com_stack, notice_num, com_scrap, update_date, com_no from COM_TB
+		  order by update_date desc
+
+    </select>
+
+  <!-- 	기업 정보  com_num으로 조회하기  -->
+	<select id="comInfoByNum" resultType="com.boot.DTO.CompanyInfoDTO">
+		select com_email, com_pw, com_name, com_serial_number, com_tel, com_person, com_stack,
+			com_location, com_year, com_content, com_sale, com_type, com_salary,
+			com_CEO, com_site, com_employee from com_tb where com_num=#{com_num}
+	</select>
+	
+<!-- 	연주 끝 -->
+
+
+
+  <!-- 	기업 정보 관리 페이지 정보 뿌리기  -->
+  <!-- 24.07.24(수) 하진 : 테이블 정규화로 인해 쿼리 수정  -> join -->
+  <!-- 24.07.25(목) 하진 : 테이블 정규화로 인해 쿼리 수정  -> join시 여러 stack 값을 가져와야 함 -->
+	<select id="companyInfo" resultType="com.boot.DTO.CompanyInfoDTO">
+		select c.com_email, c.com_pw, c.com_name, c.com_serial_number, c.com_tel, c.com_person,
+				 cs.com_stack, c.com_location, c.com_year, c.com_content, c.com_sale, c.com_type, 
+				 c.com_salary, c.com_CEO, c.com_site, c.com_employee 
+				from com_tb c join(select com_email, GROUP_CONCAT(stack SEPARATOR ', ') AS com_stack
+					from com_stack where com_email=#{com_email}
+					group by com_email) cs on c.com_email = cs.com_email
+            	where c.com_email=#{com_email}
+	</select>
+
+<!-- 	기업 정보(기본) 관리 페이지 정보 뿌릴 내용  -->
+	<select id="InfoMini" resultType="com.boot.DTO.CompanyInfoDTO">
+		select com_email, com_pw, com_serial_number, com_tel, com_person
+		from com_tb where com_email=#{com_email}
+	</select>
+	
+<!--     기업 기본정보 수정  -->
+		<update id="modify_Info">
+			update com_tb set com_person = #{com_person},
+			 com_tel = #{com_tel} where com_email = #{com_email}
+		</update>
+		
+<!--	<select id="companyInfoUpdate" resultType="com.boot.DTO.CompanyInfoDTO">-->
+<!--		select com_email, com_pw, com_name, com_serial_number, com_tel,-->
+<!--		com_person from com_tb where com_email=#{com_email}-->
+<!--	 	where com_email=#{com_email} -->
+<!--	</select>-->
+
+<!--기업 정보(상세) 관리 페이지 뿌릴 내용 -->
+	<select id="companyInfoUpdate" resultType="com.boot.DTO.CompanyInfoDTO">
+		select com_name,com_person, com_content, com_location, com_sale, com_salary,
+			 com_CEO, com_site from com_tb where com_email=#{com_email}
+	</select>
+
+
+<!--기업 상세정보 수정 -->
+	<update id="modify_Detail">
+		update com_tb set com_name = #{com_name} ,com_year=#{com_year},
+		com_content = #{com_content}, com_location = #{com_location}, com_sale = #{com_sale}, 
+		com_type = #{com_type}, com_salary = #{com_salary},
+		com_CEO=#{com_CEO}, com_site = #{com_site}, com_employee=#{com_employee}
+		where com_email = #{com_email}
+	</update>	
+	
+<!--	기업 상세정보 수정시 우선 기존 스택 값들을 가져와 삭제하는 과정 필요 -> 1. 기존 스택값들을 전부 조회하는 쿼리-->
+	<select id="getStackList" resultType="com.boot.DTO.CompanyInfoDTO">
+<!--		select * from com_stack where com_email = #{com_email}-->
+		select stack as com_stack from com_stack where com_email = #{com_email}
+	</select>
+	
+<!--	기업 상세정보 수정시 우선 기존 스택 값들을 가져와 삭제하는 과정 필요 -> 1. 여러 스택 값을 가졌을 경우, 하나를 제외 모두 삭제 필요-->
+	<delete id="removeStack">
+		delete from com_stack where stack = #{stack}  and com_email= #{com_email}
+	</delete>
+	
+<!-- 3. 기업 상세정보 수정시 선택 스택이 하나일 경우 or 스택 중 첫번째 값 수정-->
+	<update id="oneStack">
+		update com_stack set stack=#{stack} where com_email=#{com_email}
+	</update>
+	
+	
+<!-- 4. 기업 상세정보 수정시 선택 스택이 여러개일 경우 두번째 값 부터 저장-->
+	<insert id="addStacks">
+		insert into com_stack(stack, com_email) values(#{stack}, #{com_email})
+	</insert>
+</mapper>
+
+<!--	insert into com_tb(com_email, com_serial_number, com_name, com_tel)-->
+<!--				values(com_email=#{com_email}, com_serial_number=#{com_serial_number}-->
+<!--					, com_name=#{com_name}, com_tel=#{com_tel} -->
+<!--					where com_email=#{com_email}-->
+

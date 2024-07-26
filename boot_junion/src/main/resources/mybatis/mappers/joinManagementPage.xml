@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.joinManagementPageDAO">  
+<!-- 검색조건  -->
+	<sql id="select">
+		<if test='notice_status == "전체" and noticeCheck =="전체"'>
+			
+		</if>
+		
+		<if test='notice_status == "공고중" and noticeCheck =="전체"'>
+			and notice_status = '공고중'
+		</if>
+		
+		<if test='notice_status == "공고중" and noticeCheck =="열람"'>
+			and notice_status = '공고중' and noticeCheck = '열람'
+		</if>
+		
+		<if test='notice_status == "공고중" and noticeCheck =="미열람"'>
+			and notice_status = '공고중' and noticeCheck = '미열람'
+		</if>
+		
+		<if test='notice_status == "공고마감" and noticeCheck =="전체"'>
+			and notice_status = '공고마감'
+		</if>
+		
+		<if test='notice_status == "공고마감" and noticeCheck =="열람"'>
+			and notice_status = '공고마감' and noticeCheck = '열람'
+		</if>
+		
+		<if test='notice_status == "공고마감" and noticeCheck =="미열람"'>
+			and notice_status = '공고마감' and noticeCheck = '미열람'
+		</if>
+		
+		<if test='notice_status == "전체" and noticeCheck =="열람"'>
+			and noticeCheck = '열람'
+		</if>
+		
+		<if test='notice_status == "전체" and noticeCheck =="미열람"'>
+			and noticeCheck = '미열람'
+		</if>		
+	</sql> 
+   <!-- <![CDATA[]]> : mybatis에서 특수문자 인식 처리 -->
+    <select id="joinManagementPaging" resultType="com.boot.DTO.NoticeDTO">
+	    <![CDATA[
+		        select 	rownum, com_email,com_name, notice_title, notice_area1, notice_area2,
+						notice_career, joincompany_date, resume_title, notice_num,
+						notice_endDate, noticeCheck, resume_num, notice_status , user_email 
+			from( select 	rownum, com_email, com_name, notice_title, notice_area1, notice_area2,
+							notice_career, joincompany_date, resume_title, notice_num,
+							notice_endDate, noticeCheck, resume_num, notice_status , user_email  
+			from (select row_number() over(order by notice_num desc) as rownum,
+							n.com_email, n.com_name, n.notice_title, n.notice_area1, n.notice_area2,
+							n.notice_career, n.joincompany_date, r.resume_title, n.notice_num,
+							n.notice_endDate, n.noticeCheck, n.resume_num, n.notice_status , n.user_email 
+			                from notice_tb n 
+			                left JOIN resume_tb r ON n.resume_num = r.resume_num
+			                left JOIN submit_tb s ON s.resume_num = n.resume_num
+							WHERE s.user_email = #{user_email}
+			                order by notice_num desc) a
+			where rownum <= (#{pageNum} * #{amount})
+			) aa
+			where rownum > (#{pageNum}-1)*#{amount};    
+	    ]]>
+    </select> 
+    
+    <select id="notice_status2" resultType="com.boot.DTO.NoticeDTO">
+	    <![CDATA[
+		        select 	rownum, com_email, com_name, notice_title, notice_area1, notice_area2,
+						notice_career, joincompany_date, resume_title, notice_num,
+						notice_endDate, noticeCheck, resume_num, notice_status , user_email 
+			from( select 	rownum, com_email, com_name, notice_title, notice_area1, notice_area2,
+							notice_career, joincompany_date, resume_title, notice_num,
+							notice_endDate, noticeCheck, resume_num, notice_status , user_email  
+			from (select row_number() over(order by notice_num desc) as rownum,
+							n.com_email, n.com_name, n.notice_title, n.notice_area1, n.notice_area2,
+							n.notice_career, n.joincompany_date, r.resume_title, n.notice_num,
+							n.notice_endDate, n.noticeCheck, n.resume_num, n.notice_status , n.user_email 
+			                from notice_tb n left JOIN resume_tb r ON n.resume_num = r.resume_num
+							WHERE n.user_email = #{user_email}
+							]]>
+							<include refid="select"></include>
+							<![CDATA[
+			                order by notice_num desc) a
+			where rownum <= (#{pageNum} * #{amount})
+			) aa
+			where rownum > (#{pageNum}-1)*#{amount};    
+	    ]]>
+    </select>
+       
+    <select id="joinManagementGetTotalCount" resultType="int">
+	    select count(*) from notice_tb where user_email=#{user_email}
+    </select>
+    
+    
+    <insert id="comStar">    	
+        insert into com_star_tb (user_email, com_email,com_star,notice_num) values(#{user_email},#{com_email},#{com_star},#{notice_num})      
+    </insert>
+        
+    
+</mapper>

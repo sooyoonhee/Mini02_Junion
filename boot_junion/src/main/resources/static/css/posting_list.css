@@ -1,0 +1,277 @@
+:root 
+{
+  /* 컬러 모음 */
+  --main-color:#FFA500;
+  --color-black: #111;
+  --color-white: #fff;
+  --color-gray: #787878;
+  --input-gray: #e5e5ec;
+  --button-gray: #f7f7f7;
+  --border-color-gray: #dadada;
+  --font-size32: 32px;
+  --font-size24: 24px;
+  --font-size20: 20px;
+  --font-size16: 16px;
+  --font-size14: 14px;
+  --font-size12: 12px;
+}
+
+
+
+/*    섹션    */
+
+section 
+{
+    display: flex;
+    justify-content: center;
+
+}
+
+.wrap
+{
+    min-width: 1200px;
+    padding: 70px 0;
+    box-sizing: border-box;
+    display: flex;
+	margin-top: 90px;
+}
+.devlist
+{
+    width: 1200px;
+}
+
+.selectbox
+{
+    display: flex;
+}
+
+
+
+.selectbox .select .title
+{
+    padding-left: 20px;   
+    margin: 0 0 30px 0;
+    border: 1px solid var(--input-gray);
+    border-radius: 10px;
+    padding: 16px 20px;
+    width: 1158px;
+    display: flex;
+}
+
+.selectbox .icon
+{
+    position: absolute;
+}
+.selectbox .icon
+{
+    right: 380px;
+    margin-top: 16px;
+}
+
+
+.filterbox
+{
+    display: flex;
+    margin-bottom: 64px;
+}
+
+
+.filterbox .right
+{
+    width: initial;
+    display: flex;
+    margin-left: auto;
+}
+
+
+.filterbox .left
+{
+    display: flex;
+}
+
+
+
+/* 버튼시작 */
+
+.right .fil2
+{
+    margin-left: 8px;
+    border: 1px solid var(--input-gray);
+    background-color: var(--color-white);
+    border-radius: 10px;
+
+    width: 80px;
+    height: 40px;
+    cursor: pointer;
+    &:hover 
+    {
+        background: var(--main-color);
+        color: #fff;
+    }
+}
+
+.left .fil2
+{
+    border: 1px solid var(--input-gray);
+    background-color: var(--color-white);
+    border-radius: 10px;
+
+    width: 80px;
+    height: 40px;
+    cursor: pointer;
+    &:hover 
+    {
+        background: var(--main-color);
+        color: #fff;
+    }
+}
+
+
+
+
+/* 버튼 끝 */
+
+
+/* .filterbox .fil
+{
+    margin: 0 14px 0 0;
+    border: 1px solid var(--input-gray);
+    border-radius: 10px;
+    padding: 14px 18px;
+    width: initial;
+    display: flex;
+    background-color: var(--color-white);
+} */
+
+
+.filterbox .fil .filter .last,
+.filterbox .fil2 .but1,
+.filterbox .fil3 .but1,
+.menutitle .company .c1,
+.menutitle .location .l1
+{
+    font-size: var(--font-size14);
+    font-weight: 300;
+}
+
+
+
+.selectbox .title
+{
+    font-size: var(--font-size16);
+    font-weight: 300;
+    width: 1200px;
+    border: none;
+    resize: none;
+    
+}
+
+.selectbox .title
+{
+display:inline-block;
+
+    
+}
+
+
+
+
+.sbox .select1
+{
+    height: 40px;
+    border-radius: 10px;
+    border: solid 1px var(--input-gray);
+    padding: 0 15px;
+    font-size: var(--font-size14);
+    font-weight: 200;
+    margin-right: 14px;
+}
+
+
+
+
+
+.menutitle .company
+{
+    margin-bottom: 4px;
+}
+
+.mtlist
+{
+    display: grid; grid-template-columns:  270px 270px 270px 270px; 
+    gap: 40px;
+}
+
+.menutitle
+{
+    max-width: 270px;
+    
+}
+
+
+.menutitle .title .t1
+{
+    font-size: var(--font-size16);
+    font-weight: 600;
+}
+
+.menubox
+{
+    display: flex;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.menubox .img
+{
+    width: 270px;
+    height: 180px;
+    background-image: url(../images/company.svg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+
+}
+
+.menubox .scrap
+{
+    position: absolute;
+    top: 15px;
+    right: 12px
+}
+.menubox .a:hover
+{
+    border:1px solid var(--main-color);
+    background-color: var(--main-color);
+    color: var(--main-color);
+}
+
+
+
+
+
+
+.titlebox
+{
+    width: 270px;
+    height: 90px;
+}
+
+.titlebox .title
+{
+    margin-bottom: 8px;
+}
+
+
+
+.mtlist
+{
+    margin-bottom: 60px;
+}
+.pagingbox
+{
+    margin-bottom: 60px;
+}
+
+
+

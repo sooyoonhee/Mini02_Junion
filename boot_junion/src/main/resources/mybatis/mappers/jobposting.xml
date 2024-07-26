@@ -1,0 +1,91 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.jobpostingDAO">
+
+	<!-- 마감여부 포함 LIST 구하는 쿼리-->
+    <select id="jobpostingList" resultType="com.boot.DTO.jobpostingDTO"> 
+       	SELECT notice_num, com_email, notice_title, notice_career, notice_startDate, notice_endDate, resume_num,
+       	CASE 
+        WHEN notice_endDate >= CURRENT_TIMESTAMP THEN '진행중'
+        ELSE '마감'
+       	END AS notice_final 
+        FROM notice_tb
+		where com_email = #{com_email}
+        order by notice_num desc
+    </select>
+        
+    <!-- 안전모드 켜져있으면 끄고 테스트하기 (delete구문 오류나면 확인하기)-->
+ 	<delete id="jobpostingDelete"> <!-- notice_num 으로 공고번호 찾아서 삭제-->
+        delete from notice_tb where notice_num= #{notice_num}
+    </delete>
+
+
+    <!-- 공고목록 전체,진행중,마감 count 값 가져오는 쿼리 --> <!-- email값 추가해야됨-->
+    <select id="jobpostingTotalCount" resultType="com.boot.DTO.jobpostingDTO">
+		<![CDATA[
+			SELECT 
+		    COUNT(notice_num) AS totalCount,
+		    SUM(CASE 
+		        WHEN notice_endDate >= CURRENT_TIMESTAMP THEN 1
+		        ELSE 0
+		    END) AS onCount,
+		    SUM(CASE 
+		        WHEN notice_endDate < CURRENT_TIMESTAMP THEN 1
+		        ELSE 0
+		    END) AS offCount
+			FROM notice_tb
+			where com_email = #{com_email}
+			
+		]]>
+		<!--where com_email='ccomino2t@wp.com'-->
+    </select>
+	<!--================================================= jobposting 끝 =================================================-->
+	
+	<!-- t_count(지원자 수) 컬럼 가져오는 쿼리 -->
+    <select id="jobpostingSupport" resultType="com.boot.DTO.jobpostingDTO"> 
+		SELECT 
+		    user_name, resume_gender, resume_age, resume_stack, career_month, resume_writeDate, resume_num,
+		    YEAR(CURDATE()) - YEAR(resume_age) + 1 AS korean_age
+		FROM 
+		    resume_tb 
+	    <!--where resume_num = '35'-->
+		ORDER BY 
+		    resume_num DESC
+
+	</select>
+	
+    <select id="jobpostingSupportCount" resultType="com.boot.DTO.jobpostingDTO"> 
+		SELECT 
+		    COUNT(*) AS t_count
+		FROM 
+		    resume_tb 
+		    
+		ORDER BY 
+		    resume_num DESC
+	</select>
+
+<!--================================================= jobposting List 끝 =================================================-->
+	
+    <insert id="jobpostingOffer"> 
+		INSERT INTO offer (offer_title, offer_name, offer_content, offer_job, offer_career, offer_pay, resume_num)
+	    VALUES (#{offer_title}, #{offer_name}, #{offer_content}, #{offer_job}, #{offer_career}, #{offer_pay}, #{resume_num});
+	</insert>
+	
+	
+	
+<!--================================================= jobposting Offer 끝 =================================================-->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

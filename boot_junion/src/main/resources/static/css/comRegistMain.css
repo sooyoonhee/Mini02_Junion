@@ -1,0 +1,180 @@
+
+:root 
+{
+  /* 컬러 모음 */
+  --main-color:#FFA500;
+  --color-black: #111;
+  --color-white: #fff;
+  --color-gray: #787878;
+  --input-gray: #e5e5ec;
+  --button-gray: #f7f7f7;
+  --border-color-gray: #dadada;
+  --font-size32: 32px;
+  --font-size24: 24px;
+  --font-size16: 16px;
+  --font-size14: 14px;
+  --font-size12: 12px;
+}
+
+.container 
+{
+  display: flex;
+}
+
+/* 헤더 */
+.mainContent header 
+{
+  height: 90px;
+  border-bottom: 1px solid var(--input-gray);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+}
+
+/* 헤더 아이디 영역 */
+.mainContent header .userWrapper
+{
+  display: flex;
+  padding: 0 15px;
+  white-space: nowrap;
+  margin-left: auto;
+  width: 140px;
+  align-items: center;
+}
+
+.mainContent header .userWrapper img
+{
+  margin-right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;   
+}
+
+.mainContent header .userWrapper h4.name 
+{
+  font-size: var(--font-size14);
+  margin-right: 12px;
+}
+
+
+
+/* 드롭다운 메뉴 */
+.dorpdowmMain
+{
+  display: flex;
+}
+
+.dropdown
+{
+  display: flex;
+  align-items: center;
+}
+
+.dropdownSub
+{
+  display: flex;
+}
+
+.dropdownContent 
+{
+  position: absolute;
+  display: none;
+  text-align: center;
+  margin-top: 20px;
+  width: 160px;
+  background-color: var(--color-white);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  right: 11px;
+}
+
+.dropdownContent a 
+{
+  color: var(--color-black);
+  padding: 12px;
+  text-decoration: none;
+  display: block;
+  font-size: var(--color-black);
+}
+
+
+
+/* 메인 */
+main 
+{
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;  
+}
+
+main .mainContainer 
+{
+  min-width:1200px;
+}
+
+/* 프로필 : 사진 + 이름 */
+main .mainContainer .memberInfo 
+{
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+main .mainContainer .memberInfo img.memberImg 
+{
+  width:64px;
+  height: 64px;
+  margin-right: 20px;
+}
+
+main .mainContainer .memberInfo .memberName 
+{
+  font-size: var(--font-size32);
+  font-weight: 600;
+} 
+
+main .mainContainer .announce
+{
+  display: flex;
+  flex-direction: column;
+  
+ 
+}
+main .mainContainer .announce img.imageAnnouncement
+{
+  
+  width:200px;
+  height: 200px;
+  
+  
+}
+
+main .mainContainer .announce .announce3
+{
+  font-size: 20px;
+  text-align: center;
+  margin-top: 150px;
+
+}
+
+main .mainContainer .announce .announce1
+{
+  font-size: 20px;
+  color: var(--border-color-gray);
+  text-align: center;
+  margin-top: 10px;
+
+}
+
+main .mainContainer .announce .announce2
+{
+  font-size: 32px;
+  color: var(--color-black);
+  text-align: center;
+  margin-top: 5PX;
+}
+
+
+
+
+

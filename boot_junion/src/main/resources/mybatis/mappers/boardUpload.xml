@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.boardAttachDAO">
+    <insert id="boardInsertFile">
+		insert into board_attach(uuid ,uploadPath ,fileName, image, board_no) 
+			   			values(#{uuid},#{uploadPath},#{fileName},#{image},#{board_no})
+    </insert>
+    
+    <select id="boardGetFileList" resultType="com.boot.DTO.boardAttachDTO">
+		select uuid ,uploadPath ,fileName, image, board_no
+		from board_attach where board_no=#{board_no}
+    </select>
+    
+    <delete id="boardDeleteFile">
+		delete from board_attach where board_no=#{board_no}
+    </delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

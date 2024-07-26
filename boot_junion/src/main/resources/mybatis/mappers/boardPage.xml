@@ -1,0 +1,80 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.boardPageDAO">
+	<sql id="criteria"> <!-- 검색 로직 ( 필요한거만 쓰기? )-->
+<!--	1번 방법  --> 
+		<!--<if test="type == 'T'.toString()">-->
+		
+		<!-- 2번 방법-->
+			<if test='type == "T"'> <!--제목-->
+		
+		   	 where board_title like concat ('%', #{keyword}, '%')
+			</if>
+			<if test='type == "C"'> <!--내용-->
+		
+		   	 	where board_content like concat ('%', #{keyword}, '%')
+			</if>
+			<if test='type == "W"'>  <!--작성자-->
+		
+		   		 where user_email like concat ('%', #{keyword}, '%')
+			</if>
+			
+			<if test='type == "TC"'>
+		
+		   	 	where board_title like concat ('%', #{keyword}, '%') or  board_content like concat ('%', #{keyword}, '%')
+			</if>
+			<if test='type == "TW"'>
+		
+		   	 	where board_title like concat ('%', #{keyword}, '%')	or  user_email like concat ('%', #{keyword}, '%')
+		   	 	
+			</if>
+			<if test='type == "TCW"'>
+		
+		   	 	where board_title like concat ('%', #{keyword}, '%')or  
+		   	 	board_content like concat ('%', #{keyword}, '%') or  user_email like concat ('%', #{keyword}, '%')
+		   	 	
+			</if>
+	</sql>
+ 
+	    
+	    <!--  @@ 이 부분 쿼리 오류뜨면 확인해보기 @@-->
+	    
+	    
+<!--         <![CDATA[]]> : mybatis 에서 특수	문자 인식 처리 -->
+    <select id="boardListWithPaging" resultType="com.boot.DTO.boardBoardDTO"> <!-- 페이징기능 ( 페이징 숫자 누르면 정확한 위치로 이동 시키는 기능 )-->
+    	<![CDATA[
+			select rownum, board_no, substr(user_email,1,instr(user_email,'@')-1) as user_email, board_title, board_content, create_date, board_hit 
+			 from (select rownum, board_no, user_email, board_title, board_content, create_date, board_hit 
+			  from (select row_number() over(order by board_no desc) as rownum
+							 , board_no
+							 , user_email, board_title, board_content
+							 , replace(substr(create_date, 6, 5), '-','.')  as create_date, board_hit 
+						  from user_board
+						  ]]>
+						  <include refid="criteria"></include>
+						  <![CDATA[
+						 order by board_no desc) a
+				where rownum <= (#{pageNum} * #{amount})
+				  ) aa
+			where rownum > (#{pageNum}-1)*#{amount}
+    	]]>
+    	
+    </select>
+    
+    
+    
+    <select id="boardGetTotalCount" resultType="int"> <!-- 페이지 전체 카운트 (tbl_board 조회해서 (creieria 에 뿌려줌 ?))-->
+    	select count(*) from user_board
+    	<include refid="criteria"></include>
+    </select>
+</mapper>
+
+
+
+
+
+
+
+

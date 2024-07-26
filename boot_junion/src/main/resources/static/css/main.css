@@ -1,0 +1,411 @@
+:root 
+{
+  /* 컬러 모음 */
+  --main-color:#FFA500;
+  --color-black: #111;
+  --color-white: #fff;
+  --color-gray: #787878;
+  --input-gray: #e5e5ec;
+  --button-gray: #f7f7f7;
+  --border-color-gray: #dadada;
+  --font-size48: 48px;
+  --font-size32: 32px;
+  --font-size24: 24px;
+  --font-size20: 20px;
+  --font-size16: 16px;
+  --font-size14: 14px;
+  --font-size12: 12px;
+}
+/* header  */
+header 
+{   
+    height: 90px;
+    border-bottom: 1px solid var(--border-color-gray);
+}
+
+.headerInner 
+{
+    margin: 0 auto;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.headerInner h5.logo 
+{
+    margin-right: 40px;
+    width: 120px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.headerInner ul.menu 
+{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap:40px;
+}
+
+.headerInner ul.menu li, .headerInner ul.rightMenu li 
+{
+    padding: 10px 20px;
+}
+
+.headerInner ul.menu li a, .headerInner ul.rightMenu li a 
+{
+    font-size: var(--font-size14);
+    color: var(--color-black);
+    font-weight: 500;
+}
+
+.rightMenu 
+{
+    margin-left: auto;
+    display: flex;
+}
+
+.headerInner ul.rightMenu li:first-child 
+{
+    margin-right:40px;
+}
+
+
+/* main */
+
+
+main .banner
+{
+    background-color: #009687;
+    display: flex;
+    justify-content: center;
+	height: 460px;
+	padding-top: 90px;
+}
+
+main .mainBanner
+{
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*padding: 40px 300px;*/
+	background-image: url(../images/mainBg.svg);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;	
+	min-width: 1200px;
+}
+
+main .mainBanner .content
+{
+    width: 490px;
+}
+
+h5.comTitle 
+{
+	font-size: 16px;
+	color: #fff;
+	font-weight: 300;
+	margin-bottom: 12px;
+}
+main .mainBanner .mainTitle
+{
+    font-size: var(--font-size48);
+	text-wrap: nowrap;
+	color: #fff;
+	line-height:56px;
+	font-weight: 500;
+	margin-bottom: 32px;
+}
+main .mainBanner .descText
+{
+    font-size: 18px;
+	color: #fff;
+	font-weight: 200;
+	line-height:24px;
+}
+
+
+main .subtitle
+{
+    justify-content: center;
+    font-size: var(--font-size24);
+    font-weight: bold;
+}
+
+main span
+{
+    color: var(--main-color);
+}
+
+main .innerCon
+{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 100px;
+}
+main .innerCon .sectionA,
+main .innerCon .sectionB,
+main .innerCon .sectionC
+{
+    margin-bottom: 120px;
+}
+
+
+main .innerCon .sectionName
+{
+    display: flex;
+    margin-bottom: 25px;
+
+}
+
+main .innerCon .sectionName .more
+{
+    margin-left: auto;
+    padding: 5px 10px;
+    background-color: var(--input-gray);
+    /* min-width: 24px; */
+    border: none;
+    color: var(--color-black);
+}
+
+main .innerCon .moreView
+{
+    margin-left: auto;
+    color: var(--color-black);
+}
+
+main .sectionA,
+main .sectionB,
+main .sectionC
+{
+    max-width: 1200px;
+}
+
+main .sectionA .cardPost
+{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: grid;
+    gap: 40px;
+}
+
+main .sectionA .cardPost .con .image:hover
+{
+    background-color: var(--color-white);
+    border: 1px solid var(--main-color);
+}
+
+main .sectionA .cardPost .con .image
+{
+    width: 270px;
+    height: 220px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+main .sectionA .cardPost .postSub .category
+{
+    color: #777;
+    font-size: var(--font-size16);
+}
+
+main .sectionA .cardPost .postSub .name
+{
+    color: var(--color-black);
+    font-size: var(--font-size20);
+    margin-bottom: 120px;
+}
+
+main .sectionB .themaCon
+{
+    display: flex;
+    gap: 40px;
+}
+
+main .sectionB .themaCon .sectionName
+{
+    margin-top: 24px;
+    margin-bottom: 0;
+}
+
+main .sectionB .themaCon .postThema
+{
+    display: flex;
+    width: 370px;
+    height: 593px;
+    gap: 40px;
+    border: 1px solid var(--border-color-gray);
+    border-radius: 5px;
+    flex-direction: column;
+    padding: 24px;
+}
+
+main .sectionB .themaCon .postThema .themaSection .one
+{
+    display: block;
+    align-content: center;
+}
+
+main .sectionB .themaCon .postThema .themaSection .one .data:hover
+{
+    background-color: #FFF6E6;
+    border: none;
+}
+main .sectionB .themaCon .postThema .themaSection .one .data
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 325px;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+main .sectionB .themaCon .postThema .themaSection .one .data .number
+{
+    font-size: var(--font-size24);
+    margin-left: 0;
+}
+
+main .sectionB .themaCon .postThema .themaSection .one .data .name
+{
+    margin-left: 24px;
+}
+main .sectionB .themaCon .postThema .themaSection .one .data .conSub
+{
+    font-size: var(--font-size12);
+}
+
+main .sectionB .themaCon .postThema .themaSection .one .data .conTitle,
+main .sectionB .themaCon .postThema .themaSection .one .data .dDay
+{
+    margin-left: auto;
+    font-size: var(--font-size20);
+}
+
+
+main .subBanner
+{
+    height: 180px;
+    background-color: var(--color-gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .subBanner .content .bannerTitle
+{
+    font-size: var(--font-size32);
+    margin-bottom: 25px;
+    color: var(--color-black);
+    font-weight: 300;
+}
+main .subBanner .content .bannerSubTitle
+{
+    font-size: var(--font-size16);
+    text-align: center;
+    color: var(--color-black);
+}
+
+main .sectionC .postSection
+{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: grid;
+    gap: 40px;
+}
+
+main .postSection .a
+{
+    width: 270px;
+    height: 98px;
+    border: 1px solid var(--border-color-gray);
+    display: flex;
+    align-items: center;
+
+}
+
+main .postSection .a .conImage
+{
+    width: 48px;
+    height: 48px;
+    background-color: var(--color-gray);
+    margin: 0 10px;
+}
+
+main .postSection .a .conProfile .conTitle
+{
+    font-size: var(--font-size16);
+}
+
+main .postSection .a .conProfile .conSec
+{
+    font-size: var(--font-size12);
+    color: var(--color-gray);
+}
+
+main .postSection .a .more
+{
+    padding: 5px 7px;
+    border: var(--border-color-gray);
+    font-size: var(--font-size12);
+    background-color: none;
+    border-radius: 3px;
+    margin-left: auto;
+    margin-right: 12px;
+}
+
+
+
+
+
+
+/* Footer */
+footer 
+{
+    padding:50px 0;
+    border-top: 1px solid var(--border-color-gray);
+}
+
+.footerInner 
+{
+    margin:0 auto;
+    max-width: 1200px;
+    display: flex;    
+}
+
+.footerInner .f_conWrap 
+{
+    width: 50%;
+}
+
+.footerInner .left_conWrap .textWrap 
+{
+    font-size: var(--font-size14);
+    line-height: 24px;
+    margin-top: 20px;
+} 
+
+.footerInner .right_conWrap 
+{
+    text-align: right;
+}
+
+.footerInner .right_conWrap .textWrap 
+{
+    font-size: var(--font-size14);
+    line-height: 24px;
+}
+
+.footerInner .right_conWrap h3
+{
+    font-size:var(--font-size24);
+    font-weight: 500;
+    color: #222;
+    margin-bottom: 20px;
+}

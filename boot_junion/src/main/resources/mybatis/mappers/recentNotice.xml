@@ -1,0 +1,73 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.recentNoticeDAO">
+
+  	<!-- user_email로 recent_noticeNumArray을 가져오는 쿼리 -->
+    <select id="getRecentNoticeArr" resultType="String">
+        SELECT recent_noticeNumArray
+        FROM USER_TB
+        WHERE user_email = #{user_email}
+    </select>
+  
+  <!--recent_noticeNumArray로 최근본 채용공고를 가져오는 쿼리 -->
+    <select id="getRecentNotice" parameterType="int" resultType="com.boot.DTO.ComNoticeDTO">
+	  SELECT notice_num, com_email, notice_title, notice_career, notice_area1, notice_area2, notice_startDate, notice_endDate
+	       	FROM notice_tb
+			where notice_num=#{notice_num}
+	</select>
+
+<!--지수-->
+
+<!--	공고등록 쿼리-->
+<!--	<insert id="registerNotice" parameterType="com.boot.DTO.ComNoticeDTO">-->
+<!--        <selectKey keyProperty="notice_num" order="BEFORE" resultType="int">-->
+<!--           select ifnull(max(notice_num), 0)+1 from notice_tb-->
+<!--        </selectKey>-->
+<!--        insert into notice_tb (-->
+<!--            notice_num, notice_title, notice_job, com_name, notice_recruitNum,-->
+<!--            notice_area1, notice_area2, notice_career, notice_pay1, notice_pay2,-->
+<!--            notice_startDate, notice_endDate, notice_contactType, notice_department, notice_position,-->
+<!--            notice_stack, notice_jobInfo, notice_condition, notice_prefer, notice_benefit, com_email, com_tel-->
+<!--        ) values (-->
+<!--            #{notice_num}, #{notice_title}, #{notice_job}, (select com_name from com_tb where com_email=#{com_email}), #{notice_recruitNum},-->
+<!--            #{notice_area1}, #{notice_area2}, #{notice_career}, #{notice_pay1}, #{notice_pay2},-->
+<!--            #{notice_startDate}, #{notice_endDate}, #{notice_contactType}, #{notice_department}, #{notice_position},-->
+<!--            #{notice_stack}, #{notice_jobInfo}, #{notice_condition}, #{notice_prefer}, #{notice_benefit}, #{com_email} ,(select com_tel from com_tb where com_email=#{com_email})-->
+<!--        )-->
+<!--    </insert>-->
+    
+<!--	 com_email로 notice_num을 가져오는 쿼리 -->
+<!--    <select id="getNoticeNums" resultType="int" parameterType="String">-->
+<!--        SELECT notice_num-->
+<!--        FROM notice_tb-->
+<!--        WHERE com_email = #{com_email}-->
+<!--    </select>-->
+
+<!--     com_tb 테이블에 notice_num 배열을 업데이트하는 쿼리 -->
+<!--    <update id="updateNoticeNums" parameterType="map">-->
+<!--        UPDATE com_tb-->
+<!--        SET notice_num = #{noticeNums}-->
+<!--        WHERE com_email = #{com_email}-->
+<!--    </update>-->
+	
+    
+<!--	이미지 업로드-->
+<!--    <insert id="registInsertFile"  parameterType="com.boot.DTO.ComNoticeAttachDTO">-->
+<!--		insert into notice_attach(uuid, uploadPath, fileName, image, notice_num) -->
+<!--			   			values(#{uuid}, #{uploadPath}, #{fileName}, #{image}, #{notice_num})-->
+<!--    </insert>-->
+
+<!--    <select id="registGetFileList" resultType="com.boot.DTO.ComNoticeAttachDTO">-->
+<!--		select uuid, uploadPath, fileName, image, notice_num-->
+<!--			from notice_attach where notice_num=#{notice_num}-->
+<!--    </select>-->
+    
+<!--    <delete id="registDeleteFile">-->
+<!--		delete from notice_attach where notice_num=#{notice_num}-->
+<!--    </delete>-->
+
+</mapper>
+
+

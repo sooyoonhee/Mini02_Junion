@@ -1,0 +1,411 @@
+:root 
+{
+  /* 컬러 모음 */
+  --main-color:#FFA500;
+  --color-black: #111;
+  --color-white: #fff;
+  --color-gray: #787878;
+  --input-gray: #e5e5ec;
+  --button-gray: #f7f7f7;
+  --border-color-gray: #dadada;
+  --font-size32: 32px;
+  --font-size24: 24px;
+  --font-size16: 16px;
+  --font-size14: 14px;
+  --font-size12: 12px;
+}
+
+
+
+
+/* section 영역 */
+section 
+{
+  padding-top: 90px;
+  display: flex;
+  justify-content: center;
+}
+
+.sectionInner 
+{
+  min-width: 1200px;
+  padding: 50px 0;
+  box-sizing: border-box;
+}
+
+.infoWrap input, .infoWrap select,
+.sectionConBody .Bodycon input,
+.sectionConBody .Bodycon select
+{
+  border: 1px solid var(--input-gray);
+  border-radius: 6px;
+  padding: 6px 20px;
+  width: initial;
+  cursor: pointer;
+  min-width: 80px;
+}
+
+.resumeTitle 
+{
+  font-size: var(--font-size24);
+}
+
+.resumeConWrap 
+{
+  margin-top: 40px;
+  display: flex;
+}
+
+.resumeCon 
+{
+  width: 50%;
+}
+
+.resumeCon.left {}
+
+.resumeCon.left .resumeConTop {}
+
+.resumeCon.left .resumeConTop .name,
+.resumeCon.left .resumeConTop .age,
+.resumeCon.left .resumeConTop .sex,
+.resumeCon.left .resumeConBottom .resumeCon h5
+{
+  font-size: var(--font-size16);
+  color: var(--color-black);
+  font-weight: 300;
+  text-wrap: nowrap;
+}
+
+.resumeCon.left .resumeConTop .name 
+{
+  font-size:var(--font-size24);
+}
+
+.ageSex 
+{
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.ageSex .age 
+{
+  margin-right: 12px;
+}
+
+.resumeCon.left .resumeConBottom 
+{
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 20px;
+}
+
+.resumeCon.left .resumeConBottom .resumeCon 
+{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.infoWrap .resumeCon input 
+{
+	min-width: 200px;
+}
+
+/* 이력서 이미지 영역*/
+
+.resumeCon.right 
+{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: relative;
+}
+
+.resumeCon.right img 
+{
+  width: 120px;
+  height: auto;
+  margin-left: auto;
+  align-items: top;
+}
+
+.resumeCon.right h5.addPicture 
+{
+  margin-left: auto;
+  margin-right: 16px;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 300;
+  cursor: pointer;
+  position: absolute;
+}
+
+/* 경력 부분 : section career */
+
+.sectionCon 
+{
+  margin-top: 40px;
+}
+
+.sectionTitleWrap.modify 
+{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--input-gray); 
+  align-items: center; 
+}
+
+.sectionTitle 
+{
+  font-size: var(--font-size24);
+  font-weight: 300;
+  padding:10px 0;
+  box-sizing: border-box;
+}
+
+.addForm 
+{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: 300;
+}
+
+.addForm .add 
+{
+  font-size: var(--font-size16);
+  font-weight: 300;
+}
+
+.sectionConBody 
+{
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+.sectionConBody .Bodycon .icon.delete 
+{
+  margin-left: auto;
+  display: flex;
+  width: inherit;
+  cursor: pointer;
+}
+
+.sectionConBody .Bodycon > *
+{
+  width: 200px;
+}
+
+.sectionConBody .Bodycon, .sectionConBody .Bodycon .year 
+{
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+  box-sizing: border-box;
+  gap: 20px;
+  width: inherit;
+}
+
+.sectionConBody .Bodycon h5 
+{
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.sectionConBody .Bodycon .year 
+{
+  gap: 0 10px;
+}
+
+.sectionConBody .Bodycon .academyDiv 
+{
+  width: 800px;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  gap: 20px 0;
+}
+
+button.saveTech 
+{
+	border: 1px solid #111;
+    border-radius: 6px;
+    padding: 4px 20px;
+    min-width: 120px;
+    cursor: pointer;
+	height: 36px;
+	background-color: #111;
+	color: var(--color-white);
+}
+
+.sectionConBody .Bodycon .academyDiv textarea 
+{
+  width: 100%;
+  height: 56px;
+  border: 1px solid var(--input-gray);
+}
+
+.sectionConBody .Bodycon.academy 
+{
+  padding: 25px 0;
+} 
+
+.sectionConBody .Bodycon p
+{
+  margin-top: 12px;
+  font-weight: 300;
+} 
+
+.sectionConBody .Bodycon.tech 
+{
+  display: block;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px 0;
+}
+
+.sectionConBody .Bodycon.tech .techCon 
+{
+  display: flex;
+  align-items: center;
+  width: 100% !important;
+}
+.sectionConBody .Bodycon.tech .techCon .buttonTitle 
+{
+  min-width: 60px;
+}
+
+.sectionConBody .Bodycon.tech .techCon .buttonWrap
+{
+  display: grid;
+  width: calc(100% - 60px);
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.sectionConBody .Bodycon.tech input.tech 
+{
+  border: 1px solid var(--input-gray);
+  border-radius: 6px;
+  padding: 12px 20px;
+  min-width: 120px;
+  cursor: pointer;
+}
+
+.sectionConBody .Bodycon.tech input.tech.active 
+{
+  background-color: var(--main-color);
+  color:var(--color-white);
+  border: 1px soldi var(--main-color);
+} 
+
+.resumeAllWrite 
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+button.resumeAllWrite
+{
+  margin: 10px 12px 10px 0;
+  border: 1px solid var(--input-gray);
+  border-radius: 6px;
+  padding: 12px 20px;
+  width: initial;
+  cursor: pointer;
+  min-width: 300px;
+  font-size: var(--font-size16);
+}
+
+button.resumeAllWrite:hover 
+{
+  background-color: var(--main-color);
+  color:var(--color-white);
+  border: 1px soldi var(--main-color);
+}
+
+
+/*  파일업로드 커스텀 */
+input[type="file"] 
+{
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+}
+
+.uploadResult 
+{
+  position: relative;
+}
+
+.upload-name  
+{
+  display: none;
+}
+
+.uploadDiv 
+{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.resumeImage 
+{
+  width: 200px;
+  height: 240px;
+  background: #dbdbdb;
+  border-radius: 15px;
+}
+
+.fileAdd 
+{
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.resumeCon.right .resumeImage > li 
+{
+	width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.resumeCon.right .resumeImage .uploadImg 
+{
+  width: 100%;
+  height: 100%;
+}
+
+.resumeCon.right .resumeImage .uploadImg img
+{
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+}
+
+.imgController 
+{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 24%;
+  bottom: -20%;
+  gap: 0 20px;
+}
+
+.imgDelete 
+{
+  font-size: 20px;
+}

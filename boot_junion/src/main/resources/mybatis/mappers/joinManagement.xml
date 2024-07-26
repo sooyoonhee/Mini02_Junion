@@ -1,0 +1,98 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.JoinManagementDAO">
+	<!-- 검색조건  -->
+	<sql id="select">
+		<if test='notice_status == "전체" and noticeCheck =="전체"'>
+			
+		</if>
+		
+		<if test='notice_status == "공고중" and noticeCheck =="전체"'>
+			and notice_status = '공고중'
+		</if>
+		
+		<if test='notice_status == "공고중" and noticeCheck =="열람"'>
+			and notice_status = '공고중' and noticeCheck = '열람'
+		</if>
+		
+		<if test='notice_status == "공고중" and noticeCheck =="미열람"'>
+			and notice_status = '공고중' and noticeCheck = '미열람'
+		</if>
+		
+		<if test='notice_status == "공고마감" and noticeCheck =="전체"'>
+			and notice_status = '공고마감'
+		</if>
+		
+		<if test='notice_status == "공고마감" and noticeCheck =="열람"'>
+			and notice_status = '공고마감' and noticeCheck = '열람'
+		</if>
+		
+		<if test='notice_status == "공고마감" and noticeCheck =="미열람"'>
+			and notice_status = '공고마감' and noticeCheck = '미열람'
+		</if>
+		
+		<if test='notice_status == "전체" and noticeCheck =="열람"'>
+			and noticeCheck = '열람'
+		</if>
+		
+		<if test='notice_status == "전체" and noticeCheck =="미열람"'>
+			and noticeCheck = '미열람'
+		</if>		
+	</sql>
+	
+	<!-- 기본조회 -->
+	<select id="joinManagementList" resultType="com.boot.DTO.NoticeDTO">	     
+		SELECT n.com_name, n.notice_title, n.notice_area1, n.notice_area2,
+		n.notice_career, n.joincompany_date, r.resume_title, n.notice_num,
+		n.notice_endDate, n.noticeCheck, n.resume_num, n.notice_status , n.user_email		
+		FROM notice_tb n
+		left JOIN resume_tb r ON n.resume_num = r.resume_num
+		WHERE n.user_email = #{user_email}	
+    </select>	
+    
+    <!-- 검색조건 쿼리 : 진행여부 / 열람여부-->
+    <select id="notice_status" resultType="com.boot.DTO.NoticeDTO">	        
+		SELECT n.com_name, n.notice_title, n.notice_area1, n.notice_area2,
+		n.notice_career, n.joincompany_date, r.resume_title,n.notice_num,
+		n.notice_endDate, n.noticeCheck, n.resume_num, n.notice_status, n.user_email		
+		FROM notice_tb n				
+		left JOIN resume_tb r ON n.resume_num = r.resume_num		
+		WHERE n.user_email = #{user_email}
+		<include refid="select"></include>
+    </select>
+    
+    <!-- 전체 숫자 조회 -->
+    <select id="TotalJoinManagementNum" resultType="int">
+	    select count(noticeCheck) from notice_tb where user_email=#{user_email}
+    </select>
+    
+    <!-- 열람 숫자 조회 -->
+    <select id="CheckJoinManagementNum" resultType="int">
+	    select count(noticeCheck) from notice_tb where user_email=#{user_email} and noticeCheck='열람'
+    </select>
+    
+    <!-- 미열람 숫자 조회 -->
+    <select id="UnCheckJoinManagementNum" resultType="int">
+	    select count(noticeCheck) from notice_tb where user_email=#{user_email} and noticeCheck='미열람'
+    </select>
+	
+    <!-- 이력서 목록에서 셀렉트 박스 선택시 공유 여부 업데이트 되는 쿼리-->
+    <update id="cancelJoin">
+		update notice_tb set user_email=null, resume_num=null where notice_num= #{notice_num}
+    </update>
+    
+</mapper>
+
+
+<!--CASE 
+			WHEN notice_endDate <= NOW() THEN '공고마감'
+			ELSE '공고중'
+		END AS notice_status-->
+
+
+
+
+
+

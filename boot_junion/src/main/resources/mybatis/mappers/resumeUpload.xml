@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.ResumeUploadDAO">
+    <insert id="resumeInsertFile">
+		insert into resume_attach(uuid ,uploadPath ,fileName, image, resume_num) 
+			   			values(#{uuid},#{uploadPath},#{fileName},#{image},#{resume_num})
+    </insert>
+    
+    <select id="resumeGetFileList" resultType="com.boot.DTO.ResumeUploadDTO">
+		select uuid ,uploadPath ,fileName, image, resume_num
+		from resume_attach where resume_num=#{resume_num}
+    </select>
+    
+    <delete id="resumeDeleteFile">
+		delete from resume_attach where resume_num=#{resume_num}
+    </delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

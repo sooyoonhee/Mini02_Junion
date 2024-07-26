@@ -1,0 +1,43 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.boardCommentDAO">
+    <insert id="boardSave"> <!-- 댓글 저장로직 (save용으로 boardno 새로땀)-->
+		insert into board_user_comment(user_email ,commentContent ,board_no) 
+			   values('askldfj@naver.com',#{commentContent},#{board_no})  <!-- 임의로 user_email 값 넣어둠-->
+    </insert> 
+<!--		insert into board_comment(commentWriter ,commentContent ,boardNo) 
+			   values(#{commentWriter},#{commentContent},#{boardNo})-->
+    
+    <select id="boardFindAll" resultType="com.boot.DTO.boardCommentDTO"> <!-- 댓글 표시 로직 ( 데이터에 댓글이 있으면 데이터값 뿌림 ) ( css 작업 팔요할듯 )-->
+        select commentNo
+			 , user_email
+			 , commentContent
+			 , board_no
+			 , commentCreatedTime
+		 	 from board_user_comment
+		 where board_no=#{board_no}
+		 order by commentNo desc
+<!--        select commentNo
+			 , commentWriter
+			 , commentContent
+			 , boardNo
+			 , commentCreatedTime
+		  from board_comment
+		 	 from board_user_comment
+		 where boardNo=#{boardNo}
+		 order by commentNo desc-->
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
