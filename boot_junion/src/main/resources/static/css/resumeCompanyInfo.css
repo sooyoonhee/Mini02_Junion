@@ -1,0 +1,187 @@
+:root 
+{
+  /* 컬러 모음 */
+  --main-color:#FFA500;
+  --color-black: #111;
+  --color-white: #fff;
+  --color-gray: #787878;
+  --input-gray: #e5e5ec;
+  --button-gray: #f7f7f7;
+  --border-color-gray: #dadada;
+  --font-size32: 32px;
+  --font-size24: 24px;
+  --font-size16: 16px;
+  --font-size14: 14px;
+  --font-size12: 12px;
+}
+
+
+
+/* section 영역 */
+section 
+{
+  display: flex;
+  justify-content: center;
+  padding-top: 90px;
+}
+
+.sectionInner 
+{
+  min-width: 1200px;
+  padding: 50px 0;
+  box-sizing: border-box;
+}
+
+.resumeTitle 
+{
+  font-size: var(--font-size24);
+}
+
+.resumeConWrap 
+{
+  margin-top: 40px;
+  display: flex;
+}
+
+.resumeCon 
+{
+  width: 50%;
+}
+
+
+
+.resumeCon.left .resumeConTop .name,
+.resumeCon.left .resumeConTop .age,
+.resumeCon.left .resumeConTop .sex,
+.resumeCon.left .resumeConBottom .resumeCon h5
+{
+  font-size: var(--font-size16);
+  color: var(--color-black);
+  font-weight: 300;
+  text-wrap: nowrap;
+}
+
+.resumeCon.left .resumeConTop .name 
+{
+  font-size:var(--font-size24);
+}
+
+.ageSex 
+{
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.ageSex .age 
+{
+  margin-right: 12px;
+}
+
+.resumeCon.left .resumeConBottom 
+{
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 20px;
+}
+
+.resumeCon.left .resumeConBottom .resumeCon 
+{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+/* 이력서 이미지 영역*/
+
+.resumeCon.right 
+{
+  display: flex;
+  align-items: flex-start;
+}
+
+.resumeCon.right img 
+{
+  width: 120px;
+  height: auto;
+  margin-left: auto;
+  align-items: top;
+}
+
+/* 경력 부분 : section career */
+
+.sectionCon 
+{
+  margin-top: 40px;
+}
+
+.sectionTitle 
+{
+  font-size: var(--font-size24);
+  font-weight: 300;
+  padding:10px 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--input-gray);
+}
+
+.sectionConBody 
+{
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+.sectionConBody .Bodycon > *
+{
+  width: 200px;
+}
+
+.sectionConBody .Bodycon, .sectionConBody .Bodycon .year 
+{
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+  box-sizing: border-box;
+}
+
+.sectionConBody .Bodycon h5 
+{
+  font-weight: 300;
+}
+
+.sectionConBody .Bodycon .year 
+{
+  gap: 0 10px;
+}
+
+.sectionConBody .Bodycon .academyDiv 
+{
+  width: 800px;
+}
+
+.sectionConBody .Bodycon.academy 
+{
+  padding: 25px 0;
+} 
+
+.sectionConBody .Bodycon p
+{
+  margin-top: 12px;
+  font-weight: 300;
+} 
+
+.sectionConBody .Bodycon.tech 
+{
+  display: block;
+  max-width: 1200px;
+}
+
+.sectionConBody .Bodycon button.tech 
+{
+  margin: 10px 12px 10px 0;
+  border: 1px solid var(--input-gray);
+  border-radius: 6px;
+  padding: 12px 20px;
+  width: initial;
+}

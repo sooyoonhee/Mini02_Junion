@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.JoinDAO">
+
+	<!-- 이메일 중복 체크-->
+    <select id="emailCheck" parameterType="String" resultType="int">
+		SELECT COUNT(user_email) FROM USER_TB WHERE user_email= #{user_email}
+	</select>
+	
+	<insert id="join">
+        insert into USER_TB (user_name, user_email, user_pw, user_pw_check, user_questionNum, user_questionAnswer) 
+        values(#{user_name},#{user_email},#{user_pw},#{user_pw_check},#{user_questionNum},#{user_questionAnswer})        
+    </insert>  
+    
+    <update id="modify">
+        update USER_TB set user_stack= #{user_stack}, user_position= #{user_position} where user_email= #{user_email}
+    </update>
+    
+    <!-- 잡 포지셔닝 -->
+    <select id="job" resultType="com.boot.DTO.JoinDTO">
+		select * from JOB where job_no Between 100 and 199 order by job_no asc
+	</select>
+	
+	<select id="job2" resultType="com.boot.DTO.JoinDTO">
+		select * from JOB where job_no Between 200 and 299 order by job_no asc
+	</select>
+	
+	<select id="job3" resultType="com.boot.DTO.JoinDTO">
+		select * from JOB where job_no Between 300 and 399 order by job_no asc
+	</select>
+	
+	<insert id="insertJob">
+        insert into USER_JOB (user_email, job_name) values(#{user_email},#{job_name})        
+    </insert>
+    
+	<insert id="insertStack">
+        insert into USER_STACK (user_email, stack_name) values(#{user_email},#{stack_name})        
+    </insert>
+	
+	<!-- 기술 스택 -->
+    <select id="stack" resultType="com.boot.DTO.JoinDTO">
+		select * from STACK where stack_no Between 400 and 499 order by stack_no asc
+	</select>
+	
+	<select id="stack2" resultType="com.boot.DTO.JoinDTO">
+		select * from STACK where stack_no Between 500 and 599 order by stack_no asc
+	</select>
+	
+	<select id="stack3" resultType="com.boot.DTO.JoinDTO">
+		select * from STACK where stack_no Between 600 and 699 order by stack_no asc
+	</select>
+	
+	
+	
+	
+	<!-- 이메일 중복 체크-->
+    <select id="emailComCheck" parameterType="String" resultType="int">
+		SELECT COUNT(com_email) FROM COM_TB WHERE com_email= #{com_email}
+	</select>
+	
+	<!-- 사업자번호 중복 체크-->
+    <select id="serialCheck" parameterType="String" resultType="int">
+		SELECT COUNT(com_serial_number) FROM COM_TB WHERE com_serial_number= #{com_serial_number}
+	</select>
+	
+	<!-- 기업 회원가입 -->
+	<insert id="joinCompany">
+        insert into COM_TB (com_name, com_email, com_pw, com_pw_check,com_serial_number) 
+        values(#{com_name},#{com_email},#{com_pw},#{com_pw_check},#{com_serial_number})        
+    </insert>
+      
+</mapper>

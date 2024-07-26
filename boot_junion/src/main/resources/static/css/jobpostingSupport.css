@@ -1,0 +1,539 @@
+
+:root 
+{
+  /* 컬러 모음 */
+  --main-color:#FFA500;
+  --color-black: #111;
+  --color-white: #fff;
+  --color-gray: #787878;
+  --input-gray: #e5e5ec;
+  --button-gray: #f7f7f7;
+  --border-color-gray: #dadada;
+  --font-size32: 32px;
+  --font-size24: 24px;
+  --font-size16: 16px;
+  --font-size14: 14px;
+  --font-size12: 12px;
+}
+
+.container 
+{
+  display: flex;
+}
+
+/* 네비게이션 */
+.navigation
+{
+    position:relative;
+    width: 260px;
+    height: 100vh;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: 0.5s;
+    padding: 1rem 0;
+}
+
+/* 로고 */
+
+.navigation .logo 
+{
+  list-style:none;
+  padding: 30px 20px;
+}
+
+.navigation .logo a {
+  color: var(--main-color);
+  position: relative;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* 메뉴 */
+
+.navigation .navMenu {
+  position: relative;
+  height: calc( 100vh - 163px);
+}
+
+.navigation ul
+{
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+}
+
+.navigation ul li
+{
+  position:relative;
+  list-style:none;
+  width: 100%;
+}
+
+.navigation ul li.active
+{
+  background:rgba(255,165,0,0.3);
+}
+
+.navigation ul li a
+{
+  position:relative;
+  display:block;
+  width: 100%;
+  display:flex;
+  color: var(--color-black);
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.navigation ul li a .icon
+{
+  position: relative;
+  display:block;
+  min-width: 80px;
+  height:60px;
+  line-height: 60px;
+  text-align: center;
+}
+
+.navigation ul li a .icon i
+{
+  font-size: var(--font-size24);
+}
+
+.navigation ul li a .title
+{
+  position:relative;
+  display:block;
+  height: 60px;
+  line-height: 60px;
+  white-space: nowrap;
+}
+
+/* 네비게이션 옆 컨텐츠 영역 */
+.mainContent 
+{
+  width: calc( 100% - 260px);
+  min-height: 100vh;
+}
+
+/* 헤더 */
+.mainContent header 
+{
+  height: 90px;
+  border-bottom: 1px solid var(--input-gray);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+}
+
+/* 헤더 아이디 영역 */
+.mainContent header .userWrapper
+{
+  display: flex;
+  padding: 0 15px;
+  white-space: nowrap;
+  margin-left: auto;
+  width: 140px;
+  align-items: center;
+}
+
+.mainContent header .userWrapper img
+{
+  margin-right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;   
+}
+
+.mainContent header .userWrapper h4.name 
+{
+  font-size: var(--font-size14);
+  margin-right: 12px;
+}
+
+/* 메인 */
+main 
+{
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;  
+  
+}
+
+main .mainContent
+{
+  min-width:1200px;
+  display: flex;
+  
+  
+}
+
+main .containe
+{
+  width: 1200px;
+
+}
+
+
+/* 헤더밑 타이틀*/
+main .toptitle
+{
+  font-size: var(--font-size32);
+  text-align: left;
+  width: 100%;
+  margin-bottom: 40px;
+} 
+
+/*체크박스*/
+main .checkboxwrap
+{
+  display: flex;
+  margin-bottom: 20px;
+  
+  justify-content: flex-end;
+}
+
+main .checkboxwrap .check .checkbox1
+{
+  margin-right: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+
+}
+
+/*박스*/
+
+.box 
+{
+  border: 1px solid #e5e5ec;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  
+  margin-bottom: 20px;
+  
+}
+
+.box .left
+{
+  display: flex;
+  align-items: center;
+  width: 80%;
+}
+
+.box .profile
+{
+  margin-right: 10px;
+}
+
+
+.box .left .pfname
+{
+  margin-right: 20px;
+  cursor: pointer;
+
+}
+
+.box .left .pfage
+{
+  margin-right: 20px;
+}
+
+.box .left .pfEntry
+{
+  margin-right: 20px;
+}
+
+
+.box .profile
+{
+  width: 64px;
+  height: 64px;
+}
+
+.box .job-title 
+{
+  font-weight: bold;
+  font-size: var(--font-size24);
+}
+
+.box .left .leftbtn
+{
+  border: 1px solid #E5E5EC;
+  background-color: white;
+  font-size: var(--font-size12);
+  padding: 10px 20px;
+  border-radius: 6px;
+  margin-right: 10px;
+  
+}
+
+.box .dates 
+{
+  color: #888;
+  font-size: var(--font-size14);
+  margin-top: 4px;
+ 
+}
+
+.box .right 
+{
+  display: flex;
+  align-items: center;
+
+}
+
+.box i
+{
+  color: #FFA500;
+  
+}
+
+
+
+.box .btn 
+{
+  
+  background-color: white;
+
+  border: solid 1px #FFA500 ;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-left: 8px;
+  font-size: var(--font-size12);
+  margin-right: 5px;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.box .btn:hover
+{
+  background-color: #FFA500;
+  color: white;
+}
+
+
+/*팝업*/
+.disF 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.flexD 
+{
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.mlauto
+{
+    margin-left: auto;
+}
+
+.disN
+{
+    display: none;
+}
+
+.disB 
+{
+    display: block;
+}
+
+.textAlignC 
+{
+    text-align: center;
+}
+
+.mgT20 
+{
+    margin-top: 20px;
+}
+
+.box 
+{
+    border: 1px solid #dadada;
+    background-color: #f7f7f7;
+    font-size: 16px;
+    color: #111;
+    padding: 20px;
+}
+
+.tabBtn 
+{
+    padding: 8px 10px;
+    border: 1px solid #dadada;
+    background-color: #f7f7f7;
+    font-size: 16px;
+    color: #111;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+
+.popBg 
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background:rgba(0,0,0,0.6);
+}
+
+.popCon
+{
+    background-color: #fff;
+    width: 500px;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 6px;
+    text-align: center;
+}
+.popH 
+{
+    padding: 20px 20px;
+    z-index: 99;
+}
+
+.popB 
+{
+    padding: 20px 20px;
+    z-index: 99;
+}
+
+.popM
+{
+  padding-bottom: 20px;
+}
+
+.popM .title
+{
+  font-size: var(--font-size24);
+  margin-bottom: 20px;
+}
+
+.popM .comtext
+{
+  width: 430px;
+  height: 180px;
+  border: none;
+  resize: none;
+  font-size: var(--font-size14);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.popM .pophr
+{
+  color: E5E5EC;
+  width: 440px;
+}
+
+.popM .comname
+{
+  display: flex;
+  font-size: var(--font-size14);
+  margin-bottom: 10px;
+}
+
+.popM .job
+{
+  display: flex;
+  font-size: 18px;
+  margin-top: 10px;
+  
+}
+
+.popM .posita
+{
+  display: flex;
+  margin-top: 10px;
+  font-size: var(--font-size14);
+}
+
+.popM .posit
+{
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.popM .positinfo
+{
+  display: flex;
+  font-size: var(--font-size14);
+}
+
+
+
+
+button.submit 
+{
+    min-width: 120px;
+}
+
+.fs24
+{
+    font-size: 24px;
+}
+
+
+/* Footer */
+footer 
+{
+    padding:50px 0;
+    border-top: 1px solid var(--border-color-gray);
+}
+
+.footerInner 
+{
+    margin:0 auto;
+    max-width: 1200px;
+    display: flex;    
+}
+
+.footerInner .f_conWrap 
+{
+    width: 50%;
+}
+
+.footerInner .left_conWrap .textWrap 
+{
+    font-size: var(--font-size14);
+    line-height: 24px;
+    margin-top: 20px;
+} 
+
+.footerInner .right_conWrap 
+{
+    text-align: right;
+}
+
+.footerInner .right_conWrap .textWrap 
+{
+    font-size: var(--font-size14);
+    line-height: 24px;
+}
+
+.footerInner .right_conWrap h3
+{
+    font-size:var(--font-size24);
+    font-weight: 500;
+    color: #222;
+    margin-bottom: 20px;
+}

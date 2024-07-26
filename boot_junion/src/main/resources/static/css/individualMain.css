@@ -1,0 +1,563 @@
+:root 
+{
+  /* 컬러 모음 */
+  --main-color:#FFA500;
+  --color-black: #111;
+  --color-white: #fff;
+  --color-gray: #787878;
+  --input-gray: #e5e5ec;
+  --button-gray: #f7f7f7;
+  --border-color-gray: #dadada;
+  --font-size32: 32px;
+  --font-size24: 24px;
+  --font-size16: 16px;
+  --font-size14: 14px;
+  --font-size12: 12px;
+}
+
+.container 
+{
+  display: flex;
+}
+
+/* 네비게이션 */
+.navigation
+{
+  position:relative;
+  width: 260px;
+  min-height: 100vh;
+  background: #fff;
+  overflow: hidden;
+  border-right:1px solid var(--input-gray);
+}
+
+/* 로고 */
+
+.navigation .logo 
+{
+  list-style:none;
+  padding: 30px 20px;
+}
+
+.navigation .logo a {
+  color: var(--main-color);
+  position: relative;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* 메뉴 */
+
+.navigation .navMenu {
+  position: relative;
+  height: calc( 100vh - 163px);
+}
+
+.navigation ul
+{
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+}
+
+.navigation ul li
+{
+  position:relative;
+  list-style:none;
+  width: 100%;
+}
+
+.navigation ul li.active
+{
+  background:rgba(255,165,0,0.3);
+}
+
+.navigation ul li a
+{
+  position:relative;
+  display:block;
+  width: 100%;
+  display:flex;
+  color: var(--color-black);
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.navigation ul li a .icon
+{
+  position: relative;
+  display:block;
+  min-width: 80px;
+  height:60px;
+  line-height: 60px;
+  text-align: center;
+}
+
+.navigation ul li a .icon i
+{
+  font-size: var(--font-size24);
+}
+
+.navigation ul li a .title
+{
+  position:relative;
+  display:block;
+  height: 60px;
+  line-height: 60px;
+  white-space: nowrap;
+}
+
+/* 네비게이션 옆 컨텐츠 영역 */
+.mainContent 
+{
+  width: calc( 100% - 260px);
+  min-height: 100vh;
+}
+
+/* 헤더 */
+.mainContent header 
+{
+  width: 100%;
+  height: 90px;
+  border-bottom: 1px solid var(--input-gray);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* 헤더 아이디 영역 */
+.mainContent header .userWrapper
+{
+  display: flex;
+  white-space: nowrap;
+  margin-left: auto;
+  align-items: center;
+}
+
+.mainContent header .userWrapper img
+{
+  margin-right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;   
+}
+
+.mainContent header .userWrapper h4.name 
+{
+  font-size: var(--font-size14);
+  margin-right: 12px;
+}
+
+/* 메인 */
+main 
+{
+  display: flex;
+  justify-content: center;
+  padding: 50px 0 120px;  
+}
+
+main .mainContainer 
+{
+  max-width:1200px;
+}
+
+/* 프로필 : 사진 + 이름 */
+main .mainContainer .memberInfo 
+{
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+main .mainContainer .memberInfo img.memberImg 
+{
+  width:64px;
+  height: 64px;
+  margin-right: 20px;
+}
+
+main .mainContainer .memberInfo .memberName 
+{
+  font-size: var(--font-size32);
+  font-weight: 600;
+} 
+
+/* 탭버튼 */
+main .mainContainer .tabWrap 
+{
+  display: flex;
+  align-items: center;
+}
+
+main .mainContainer .tabWrap .tabCon 
+{
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+
+main .mainContainer .tabWrap .tabTitle a
+{
+  font-size: var(--font-size24);
+  font-weight: 600;
+  color: var(--color-black);
+  margin-right: 12px;
+}
+
+main .mainContainer .tabWrap .tabNum a  
+{
+  font-size: var(--font-size24);
+  font-weight: 600;
+  color: var(--main-color);
+}
+
+/* 탭버튼 연동되는 con : 전체알림 / 받은제안 / 관심기업 */
+main .mainContainer .cardWrap 
+{
+  margin-top: 20px;
+}
+
+main .mainContainer .cardWrap .cardConWrap 
+{  
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+main .mainContainer .cardWrap .cardConWrap .cardCon 
+{
+  width: 25%;
+  padding: 20px;
+  border: 1px solid var(--input-gray);
+  border-radius: 6px;
+}
+
+.cardWrap .cardConWrap .cardCon .cardConTop 
+{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cardWrap .cardConWrap .cardCon .cardConTop .type 
+{
+  margin-right: 12px;
+}
+
+.cardWrap .cardConWrap .cardCon .cardConTop .type,
+.cardWrap .cardConWrap .cardCon .cardConTop .date,
+.cardWrap .cardConWrap .cardCon .cardConBottom .company 
+{
+  font-size: var(--font-size12);
+  color: #777;
+  font-weight: 300;
+}
+
+.cardWrap .cardConWrap .cardCon .cardConBottom .title 
+{
+  font-size: 16px;
+  color: var(--color-black);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+main .mainContainer .cardWrap .cardConWrap.proposal, 
+main .mainContainer .cardWrap .cardConWrap.post 
+{
+  display: none;
+}
+
+/* tableWrap : 이력서 / 입사지원관리 / 제안받은 포지션 / 
+               스크랩공고 / 최근본공고 / 관심기업
+*/
+
+.tableWrap 
+{
+  margin-top: 40px;
+  display: flex;
+  gap: 40px;
+}
+
+.tableWrap .tableConWrap 
+{
+  width: 50%;
+}
+
+.tableWrap .tableConWrap .tabConDiv 
+{
+  display: flex;
+  gap: 20px;
+}
+
+.tableWrap .tableConWrap .tabConDiv .tabCon 
+{
+  border: 1px solid var(--input-gray);
+  background-color: var(--button-gray);
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: #767676;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.tableWrap .tableConWrap .tabConDiv .tabCon.active 
+{
+  background-color: var(--main-color);
+  border:0;
+  color: var(--color-white);
+}
+
+.tableWrap .tableConWrap .tableDiv 
+{
+  border: 1px solid var(--input-gray);
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.tableWrap .tableConWrap .tableDiv .tableCon 
+{
+  min-height:240px;
+}
+
+.tableWrap .tableConWrap .tableDiv .tableCon.join,
+.tableWrap .tableConWrap .tableDiv .tableCon.requestPosition,
+.tableWrap .tableConWrap .tableDiv .tableCon.recentNotice,
+.tableWrap .tableConWrap .tableDiv .tableCon.interestCompany
+{
+  display: none;
+}
+
+.tableWrap .tableConWrap .tableDiv .tableCon .con
+{
+  display: flex;
+  align-items: center;
+  border-bottom : 1px solid var(--input-gray);
+  padding: 20px;
+}
+
+.tableDiv .tableCon .con .state 
+{
+  width: 80px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--input-gray);
+  background-color: var(--button-gray);
+  border-radius: 6px;
+  margin-right: 20px;
+  font-size: var(--font-size14);
+}
+
+.tableDiv .tableCon .con .state.active 
+{
+  background-color: var(--main-color);
+  border:0;
+  color: var(--color-white);
+}
+
+.tableDiv .tableCon .con .textWrap h4 
+{
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-black);
+}
+
+.tableDiv .tableCon .con .textWrap h5 
+{
+  font-size:var(--font-size12);
+  margin-top: 4px;
+  color: #767676;
+  font-weight: 400;
+  margin-right: 12px;
+}
+
+.tableDiv .tableCon .con .writeDate
+{
+  margin-left: auto;
+  padding: 4px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  color: #767676;
+  font-weight: 400;
+}
+
+.tableDiv .tableCon .add, .tableDiv .tableCon .more
+{  
+  width: 120px;
+  padding: 10px 0;
+  border: 1px solid var(--input-gray);
+  background-color: var(--button-gray);
+  border-radius: 6px;
+  margin: 24px auto 0;
+  display: block;
+  cursor: pointer;
+}
+
+.tableDiv .tableCon .con .textWrap .condition 
+{
+  display: flex;
+}
+
+.tableDiv .tableCon .con .rightWrap 
+{
+  display: flex;
+  margin-left: auto;
+}
+
+.tableDiv .tableCon .con .rightWrap button 
+{
+  padding: 4px 20px;
+  border: 1px solid var(--input-gray);
+  background-color: var(--button-gray);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.tableDiv .tableCon .con .rightWrap button:hover 
+{
+  background-color: var(--main-color);
+  border:0;
+  color: var(--color-white);
+  font-weight: 400;
+} 
+
+.tableDiv .tableCon .con .rightWrap .icon.delete 
+{
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+
+/* 추천공고 */
+
+.recommendNoticeWrap 
+{
+  margin-top: 40px;
+}
+
+.recommendTxt 
+{
+  font-size: var(--font-size14);
+  color: var(--color-black);
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.recommendNotice 
+{
+  gap:20px;
+  display: flex;
+}
+
+.recommendNoticeCon 
+{
+  width: 25%;
+}
+
+.recommendNotice .imgWrap 
+{
+  width: 100%;
+  position: relative;
+}
+
+.recommendNotice .imgWrap .icon 
+{
+  position: absolute;
+  top:10px;
+  right: 10px;
+  background-color: var(--color-white);
+  padding:10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.recommendNotice .imgWrap img 
+{
+  width: 100%;
+}
+
+.recommendNoticeTitle, .recommendCompanyName, 
+.recommendBottom .location, .recommendBottom .needCarrer 
+{
+  font-weight: 400;
+}
+
+.recommendNoticeTitle 
+{
+  font-size: 16px;
+  color: var(--color-black);
+  margin-top: 12px;
+}
+
+.recommendCompanyName, .recommendBottom 
+{
+  margin-top: 8px;
+}
+
+.recommendBottom 
+{
+  display: flex;
+  align-items: center;
+}
+
+.recommendCompanyName, .recommendBottom .location, .recommendBottom .needCarrer
+{
+  margin-right: 12px;
+  color: #787878;
+  font-size: var(--font-size14);
+}
+
+/* Footer */
+footer 
+{
+    padding:50px 0;
+    border-top: 1px solid var(--border-color-gray);
+}
+
+.footerInner 
+{
+    margin:0 auto;
+    max-width: 1200px;
+    display: flex;    
+}
+
+.footerInner .f_conWrap 
+{
+    width: 50%;
+}
+
+.footerInner .left_conWrap .textWrap 
+{
+    font-size: var(--font-size14);
+    line-height: 24px;
+    margin-top: 20px;
+} 
+
+.footerInner .right_conWrap 
+{
+    text-align: right;
+}
+
+.footerInner .right_conWrap .textWrap 
+{
+    font-size: var(--font-size14);
+    line-height: 24px;
+}
+
+.footerInner .right_conWrap h3
+{
+    font-size:var(--font-size24);
+    font-weight: 500;
+    color: #222;
+    margin-bottom: 20px;
+}

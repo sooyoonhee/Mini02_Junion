@@ -1,0 +1,94 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.IndividualDAO">
+
+    <select id="getUserInfo" resultType="com.boot.DTO.UserDTO">
+<!--    <![CDATA[-->
+<!--       select user_email, user_pw, user_pw_check, user_name, user_stack, user_position, user_questionNum, user_questionAnswer, user_tel, user_type, user_location, date_format(user_birthdate, '%Y.%m.%d') as user_birthdate, user_gender from USER_TB where user_email=#{user_email}-->
+<!--    ]]>-->
+       select user_email, user_pw, user_pw_check, user_name, user_tel, user_location, user_location2, user_birthdate, user_gender from USER_TB where user_email=#{user_email}
+    </select>
+    
+    <select id="getUserStack" resultType="com.boot.DTO.UserStackDTO">
+       select stack_name, user_email from user_stack where user_email=#{user_email}
+    </select>
+    
+    <select id="getUserJob" resultType="com.boot.DTO.UserJobDTO">
+       select job_name, user_email from user_job  where user_email=#{user_email}
+    </select>
+    
+    <update id="modify">
+		update USER_TB set user_birthdate=#{user_birthdate}, user_gender=#{user_gender},user_tel=#{user_tel},user_location=#{user_location},user_location2=#{user_location2} where user_email=#{user_email}
+    </update>
+    
+    <insert id="insertJob">
+        insert into USER_JOB (job_name, user_email) values(#{job_name}, #{user_email})        
+    </insert>
+    
+	<insert id="insertStack">
+        insert into USER_STACK (stack_name, user_email) values(#{stack_name}, #{user_email})        
+    </insert>
+    
+    <update id="updateUserNoticeNum">
+		update USER_TB set recent_noticeNumArray=#{recent_noticeNumArray} where user_email=#{user_email}
+    </update>
+    
+    <delete id="deleteJob">
+        delete from USER_JOB where user_email= #{user_email}
+    </delete>
+    
+    <delete id="deleteStack">
+        delete from USER_STACK where user_email= #{user_email}
+    </delete>
+    
+    <delete id="comScrapDelete">
+        delete from COM_SCRAP where user_email= #{user_email} and com_email= #{com_email}
+    </delete>
+    
+    
+<!--    <insert id="write">-->
+<!--    	<selectKey keyProperty="boardNo" order="BEFORE" resultType="int">-->
+<!--    		select ifnull(max(boardNo),0)+1 from tbl_board-->
+<!--    	</selectKey>-->
+<!--		insert into tbl_board(boardName, boardTitle, boardContent, boardHit) -->
+<!--		values(#{boardName},#{boardTitle},#{boardContent},0)-->
+<!--    </insert>-->
+
+
+
+
+<!--    <insert id="write">
+    	<selectKey keyProperty="boardNo" order="BEFORE" resultType="int">
+    		select ifnull(max(boardNo),0)+1 from tbl_board
+    	</selectKey>
+		insert into tbl_board(boardNo, boardName, boardTitle, boardContent, boardHit) 
+				select ifnull(max(boardNo),0)+1,#{boardName},#{boardTitle},#{boardContent},0 
+				  from tbl_board
+    </insert>
+				
+    <select id="contentView" resultType="com.boot.dto.BoardDTO">
+        select boardNo, boardName, boardTitle, boardContent, boardDate, boardHit from tbl_board where boardNo=#{boardNo}
+    </select>
+    
+    <update id="modify">
+		update tbl_board set boardName=#{boardName}, boardTitle=#{boardTitle}, boardContent=#{boardContent} where boardNo=#{boardNo}
+    </update>
+    
+    <delete id="delete">
+		delete from tbl_board where boardNo=#{boardNo}
+    </delete>-->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

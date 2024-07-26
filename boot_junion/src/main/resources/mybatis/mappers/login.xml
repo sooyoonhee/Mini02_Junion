@@ -1,0 +1,43 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.LoginDAO">
+
+  <!--로그인-->
+    <select id="loginynI" resultType="com.boot.DTO.LoginDTO">
+    	select user_email, user_pw, user_name, user_type from user_tb where user_email=#{user_email}
+    </select>
+    <select id="loginynC" resultType="com.boot.DTO.LoginDTO">
+    	select com_email, com_pw, com_name, user_type from com_tb where com_email=#{com_email}
+    </select>
+    
+<!--이메일 찾기-->
+    <select id="findEI" resultType="com.boot.DTO.LoginDTO">
+    	select user_email, user_name, user_questionNum, user_questionAnswer from user_tb 
+    		where user_name=#{user_name} and user_questionNum=#{user_questionNum} and user_questionAnswer=#{user_questionAnswer}
+    </select>
+    <select id="findEC" resultType="com.boot.DTO.LoginDTO">
+    	select com_email, com_name, com_serial_number from com_tb 
+    		where com_name=#{com_name} and com_serial_number=#{com_serial_number}
+    </select>
+    
+<!--비밀번호 찾기-->
+    <select id="findPWI" resultType="com.boot.DTO.LoginDTO">
+    	select user_email, user_pw, user_pw_check, user_name, user_questionNum, user_questionAnswer from user_tb 
+    		where user_email=#{user_email} and user_name=#{user_name} and user_questionNum=#{user_questionNum} and user_questionAnswer=#{user_questionAnswer}
+    </select>
+    <select id="findPWC" resultType="com.boot.DTO.LoginDTO">
+    	select com_email, com_pw, com_pw_check, com_name, com_serial_number from com_tb 
+    		where com_email=#{com_email} and com_name=#{com_name} and com_serial_number=#{com_serial_number}
+    </select>
+    
+<!--    비밀번호 재설정-->
+    <update id="resetPWI">
+    	update user_tb set user_pw=#{user_pw}, user_pw_check=#{user_pw_check} where user_email=#{user_email} ;
+    </update>
+    <update id="resetPWC">
+    	update com_tb set com_pw=#{com_pw}, com_pw_check=#{com_pw_check} where com_email=#{com_email} ;
+    </update>
+    
+</mapper>

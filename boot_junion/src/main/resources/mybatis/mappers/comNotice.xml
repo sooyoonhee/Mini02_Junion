@@ -1,0 +1,118 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.ComNoticeDAO">
+<!--하진-->
+   <!-- 	대메뉴 : 채용, 이동. 정보 뿌리기  -->
+	  <!-- 24.07.24(수) 하진 : 테이블 정규화로 인해 쿼리 수정  -> join -->
+   <select id="JobPostCard" resultType="com.boot.DTO.ComNoticeDTO">
+      select notice_num, notice_title, c.com_name, notice_area1,
+          notice_area2, notice_career
+          from notice_tb n join com_tb c on n.com_email = c.com_email
+   </select>
+	
+<!--	채용공고 클릭, 상세페이지 이동시 조회수 증가-->
+	<update id="hitUP">
+	update  notice_tb set notice_hit= +1  where notice_num=#{notice_num}
+	</update>
+	
+	
+<!-- 채용공고 클릭시 상세정보 페이지 이동, 정보 뿌리기-->
+	 <select id="JobPost" resultType="com.boot.DTO.ComNoticeDTO">
+      SELECT n.notice_title, n.com_email, c.com_name, n.notice_jobInfo, 
+             n.notice_condition, n.notice_prefer, n.notice_benefit, nt.notice_stack, 
+             n.notice_startDate, n.notice_endDate, n.notice_area1, n.notice_area2, n.notice_career, 
+             n.notice_department, n.notice_position, n.notice_recruitNum, n.notice_pay1, n.notice_pay2 
+         FROM notice_tb n 
+         JOIN (SELECT com_email, GROUP_CONCAT(stack SEPARATOR ', ') AS notice_stack
+              FROM notice_stack
+              WHERE notice_num = #{notice_num}
+              GROUP BY com_email) nt ON n.com_email = nt.com_email
+         JOIN com_tb c ON n.com_email = c.com_email
+         WHERE n.notice_num = #{notice_num};
+   </select>
+<!--	채공공고 상세 이동시, 회사 위치 찾아오기-->
+	<select id="comLocation" resultType="String">
+		select com_location from com_tb where com_email=#{com_email}
+	</select>
+	
+	
+<!--	지원하기 클릭, 공고 정보 가져오기 -->
+	<select id="getNoticeInfo" resultType="com.boot.DTO.ComNoticeDTO">
+		select notice_title, com_name, com_email from notice_tb where notice_num=#{notice_num}
+	</select>
+	
+<!--	지원하기 클릭, 이력서 정보 가져오기 -->
+	<select id="getProfileList" resultType="com.boot.DTO.ResumeDTO">
+		select resume_title, resume_num, user_email from resume_tb where user_email=#{user_email}
+	</select>
+	
+<!--	지원 버튼 클릭, 이력서 정보 가져오기 -->
+	<select id="getResumeNum" resultType="com.boot.DTO.ComNoticeDTO">
+		select resume_num from notice_tb where notice_num=#{notice_num}
+	</select>
+	
+<!--	버튼 클릭, 이력서 번호 비교 후 이를 공고 테이블에 추가-->
+	<update id="insertResumNum">
+	 	update notice_tb set resume_num=#{resume_num} where notice_num=#{notice_num}
+	</update>
+	
+	<!--	이력서제출시  submit테이블에 정보 추가-->
+	<insert id="updateSubmitData" parameterType="com.boot.DTO.SubmitDTO">
+		insert into submit_tb(notice_num, resume_num, user_email) 
+			   			values(#{notice_num}, #{resume_num}, #{user_email})
+    </insert>
+
+
+
+<!--지수-->
+
+	<!--공고등록 쿼리-->
+	<insert id="registerNotice" parameterType="com.boot.DTO.ComNoticeDTO">
+        <selectKey keyProperty="notice_num" order="BEFORE" resultType="int">
+           select ifnull(max(notice_num), 0)+1 from notice_tb
+        </selectKey>
+
+		insert into notice_tb (
+	            notice_num, notice_title, notice_job, notice_recruitNum,
+	            notice_area1, notice_area2, notice_career, notice_pay1, notice_pay2,
+	            notice_startDate, notice_endDate, notice_contactType, notice_department, notice_position,
+	            notice_jobInfo, notice_condition, notice_prefer, notice_benefit, com_email, com_name
+	        ) values (
+	            #{notice_num}, #{notice_title}, #{notice_job}, #{notice_recruitNum},
+	            #{notice_area1}, #{notice_area2}, #{notice_career}, #{notice_pay1}, #{notice_pay2},
+	            #{notice_startDate}, #{notice_endDate}, #{notice_contactType}, #{notice_department}, #{notice_position},
+	            #{notice_jobInfo}, #{notice_condition}, #{notice_prefer}, #{notice_benefit}, #{com_email}, (select com_name from com_tb where com_email=#{com_email})
+	        )
+    </insert>
+    <insert id="noticeInsertStack" parameterType="com.boot.DTO.ComNoticeDTO">
+<!--    	insert into notice_stack (notice_num, stack, com_email) values (#{notice_num}, #{stack}, #{com_email})-->
+    	insert into notice_stack (notice_num, stack, com_email) values (#{notice_num}, #{stackValue}, #{com_email})
+    </insert>
+    <update id="noticeStauts">
+		<![CDATA[
+		    update notice_tb set notice_status = case when notice_endDate < now() then '공고마감' else '공고중' end where notice_num = #{notice_num}
+	  ]]>
+    </update>
+    
+    
+    
+	<!--이미지 업로드-->
+    <insert id="registInsertFile"  parameterType="com.boot.DTO.ComNoticeAttachDTO">
+		insert into notice_attach(uuid, uploadPath, fileName, image, notice_num) 
+			   			values(#{uuid}, #{uploadPath}, #{fileName}, #{image}, #{notice_num})
+    </insert>
+
+    <select id="registGetFileList" resultType="com.boot.DTO.ComNoticeAttachDTO">
+		select uuid, uploadPath, fileName, image, notice_num
+			from notice_attach where notice_num=#{notice_num}
+    </select>
+    
+    <delete id="registDeleteFile">
+		delete from notice_attach where notice_num=#{notice_num}
+    </delete>
+
+</mapper>
+
+

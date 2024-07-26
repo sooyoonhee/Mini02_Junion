@@ -1,0 +1,39 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.CompanyInfoDAO">
+
+    <select id="companyInfo" resultType="com.boot.DTO.CompanyInfoDTO">
+        select com_email, com_pw, com_name, com_serial_number, com_tel, com_person, com_name, com_location, com_year, com_content,
+        		com_year, com_sale, com_type, com_salary, com_CEO, com_site, com_employee from com_tb
+<!--				로그인 등의 이슈로 아직 쿼리 미완성-->
+<!--					where com_email=#{com_email}-->
+    </select>
+    
+    <select id="companyInfoUpdate" resultType="com.boot.DTO.CompanyInfoDTO">
+        select com_email, com_pw, com_name, com_serial_number, com_tel, com_person
+				from com_tb where com_email=#{com_email}
+<!--					where com_email=#{com_email}-->
+    </select>
+
+    <update id="modify_Info">
+    update com_tb set com_person = #{com_person}, com_tel = #{com_tel}	where com_email = #{com_email}
+    </update>
+    
+    <update id="modify_Detail">
+    update com_tb set com_name = #{com_name}, com_content = #{com_content},
+    				 com_location = #{com_location}, com_sale = #{com_sale}, com_type = #{com_type},
+    				  com_salary = #{com_salary}, com_CEO=#{com_CEO},
+    				 com_site = #{com_site}, com_employee=#{com_employee}
+    				  where com_email = #{com_email}
+    </update>
+        
+				
+</mapper>
+
+<!--	insert into com_tb(com_email, com_serial_number, com_name, com_tel)-->
+<!--				values(com_email=#{com_email}, com_serial_number=#{com_serial_number}-->
+<!--					, com_name=#{com_name}, com_tel=#{com_tel} -->
+<!--					where com_email=#{com_email}-->
+

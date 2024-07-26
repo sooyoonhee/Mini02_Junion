@@ -1,0 +1,44 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.MainDAO">
+
+<!--신입 개발자 채용-->
+    <select id="mainNotice" resultType="com.boot.DTO.ComNoticeDTO">
+    	select n.notice_num, n.notice_title, n.notice_career, n.com_email, c.com_name, 
+    		datediff(n.notice_endDate, now()) from notice_tb n join com_tb c 
+    			where datediff(n.notice_endDate, now())>=0 and n.com_email = c.com_email 
+    				and n.notice_career='신입' order by notice_num desc limit 4
+    </select>
+<!--신입 top 5-->
+    <select id="mainNewCareer" resultType="com.boot.DTO.ComNoticeDTO">
+    	select n.notice_num, n.notice_title, n.notice_career, n.notice_hit, n.com_email, c.com_name, 
+    		datediff(n.notice_endDate, now()) as noticeDday from notice_tb n join com_tb c 
+    			where datediff(n.notice_endDate, now())>=0 and n.com_email = c.com_email 
+    				and n.notice_career='신입' order by notice_hit desc, notice_num desc limit 5
+    </select>
+<!--경력 인기 top 5-->
+    <select id="mainCareerhit" resultType="com.boot.DTO.ComNoticeDTO">
+    	select n.notice_num, n.notice_title, n.notice_career, n.notice_hit, n.com_email, c.com_name, 
+    		datediff(n.notice_endDate, now()) as noticeDday from notice_tb n join com_tb c 
+    			where datediff(n.notice_endDate, now())>=0 and n.com_email = c.com_email 
+    				and n.notice_career!='신입' order by notice_hit desc, notice_num desc limit 5
+    </select>
+<!--오늘 뜬 인기 top 5-->
+    <select id="mainTodayhit" resultType="com.boot.DTO.ComNoticeDTO">
+    	select n.notice_num, n.notice_title, n.notice_career, n.notice_hit, n.com_email, c.com_name, 
+    		datediff(n.notice_endDate, now()) as noticeDday from notice_tb n join com_tb c 
+    			where datediff(n.notice_endDate, now())>=0 and n.com_email = c.com_email 
+    				order by notice_hit desc, notice_num desc limit 5
+    </select>
+<!--추천 기업-->
+    <select id="mainRecommendCom">
+    	select c.com_name, c.com_email, count(s.com_email)
+			from com_tb c join com_scrap s on c.com_email = s.com_email
+				where s.com_email = c.com_email
+					group by c.com_name, c.com_email order by count(s.com_email) desc limit 12;
+    </select>
+    
+    
+</mapper>

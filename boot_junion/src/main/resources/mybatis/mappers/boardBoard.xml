@@ -1,0 +1,122 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.DAO.boardBoardDAO">
+    <select id="boardList" resultType="com.boot.DTO.boardBoardDTO"> <!-- 리스트 목록 페이지-->
+    SELECT 
+        substr(ub.user_email, 1, instr(ub.user_email, '@') - 1) AS user_email,
+        ub.board_no,
+        ub.board_title,
+        ub.board_content,
+        replace(substr(ub.create_date, 6, 5), '-', '.') AS create_date,
+        ub.board_hit,
+        ub.user_type,
+        COALESCE(ubl.like_count, 0) AS board_like_count
+    FROM 
+        user_board ub
+    LEFT JOIN 
+        (SELECT 
+             board_no, 
+             COUNT(*) AS like_count 
+         FROM 
+             user_board_like 
+         GROUP BY 
+             board_no) ubl 
+    ON 
+        ub.board_no = ubl.board_no
+    ORDER BY 
+        ub.board_no DESC
+    </select>
+    
+<!--    <insert id="write">-->
+<!--    	<selectKey keyProperty="boardNo" order="BEFORE" resultType="int">-->
+<!--    		select ifnull(max(boardNo),0)+1 from tbl_board-->
+<!--    	</selectKey>-->
+<!--		insert into tbl_board(boardName, boardTitle, boardContent, boardHit) -->
+<!--		values(#{boardName},#{boardTitle},#{boardContent},0)-->
+<!--    </insert>-->
+    <insert id="boardWrite" useGeneratedKeys="true" keyProperty="board_no"> <!-- 글 작성 버튼 -->
+		insert into user_board(user_email, board_title, board_content, board_hit) 
+		select #{user_email},#{board_title},#{board_content},0
+<!--		insert into user_board(board_no, user_email, board_title, board_content, board_hit, board_like) 
+				select ifnull(max(board_no),0)+1,#{user_email},#{board_title},#{board_content},0,0
+				  from user_board-->
+    </insert>
+				
+    <select id="boardDetailView" resultType="com.boot.DTO.boardBoardDTO"> <!-- 글 수정 페이지, 글 상세 페이지 (이 값들 가져와서 글 상세 페이지에도 넣어도 될것같음)-->
+        <!--select board_no, user_email, board_title, board_content, create_date, board_hit from user_board where board_no=#{board_no}-->
+                SELECT 
+            ub.board_no,
+            ub.user_email,
+            ub.board_title,
+            ub.board_content,
+            ub.create_date,
+            ub.board_hit,
+            COALESCE(ubl.like_count, 0) AS board_like_count
+        FROM 
+            user_board ub
+        LEFT JOIN 
+            (
+                SELECT 
+                    board_no, 
+                    COUNT(*) AS like_count 
+                FROM 
+                    user_board_like 
+                GROUP BY 
+                    board_no
+            ) ubl 
+        ON 
+            ub.board_no = ubl.board_no
+        WHERE 
+            ub.board_no = #{board_no}
+    </select>
+    <select id="boardModifyView" resultType="com.boot.DTO.boardBoardDTO"> <!-- 글 수정 페이지, 글 상세 페이지 (이 값들 가져와서 글 상세 페이지에도 넣어도 될것같음)-->
+        select board_no, user_email, board_title, board_content, create_date, board_hit from user_board where board_no=#{board_no}
+    </select>
+
+    
+    <update id="boardModify"> <!-- 글 수정 버튼 -->
+		update user_board set user_email=#{user_email}, board_title=#{board_title}, board_content=#{board_content} where board_no=#{board_no}
+    </update>
+    
+    <delete id="boardDelete"> <!-- 글 삭제 버튼-->
+		delete from user_board where board_no=#{board_no}
+    </delete>
+    
+    
+    <update id="hitcount"> <!-- 조회수 증가 쿼리 -->
+	    UPDATE user_board
+		SET board_hit = board_hit + 1
+		WHERE board_no = #{board_no}
+    </update>
+    
+    
+    <!-- 좋아요 확인 쿼리 -->
+    <select id="checkLike" resultType="int">
+        SELECT COUNT(*) 
+        FROM user_board_like
+        WHERE board_no = #{board_no} AND user_email = #{user_email};
+    </select>
+
+    <!-- 좋아요 추가 쿼리 -->
+    <insert id="insertLike">
+        INSERT INTO user_board_like (board_like, board_no, user_email)
+        VALUES (1, #{board_no}, #{user_email});
+    </insert>
+
+    
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

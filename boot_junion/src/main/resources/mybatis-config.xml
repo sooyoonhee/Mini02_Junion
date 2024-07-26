@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<mappers>
+<!--		<mapper resource="mybatis/mappers/company_info.xml" />-->
+		<mapper resource="mybatis/mappers/login.xml"/>
+		<mapper resource="mybatis/mappers/board.xml"/>
+		<mapper resource="mybatis/mappers/join.xml"/>
+		<mapper resource="mybatis/mappers/joinManagement.xml"/>
+		<mapper resource="mybatis/mappers/joinManagementPage.xml"/>
+		<mapper resource="mybatis/mappers/withdraw.xml"/>
+		<mapper resource="mybatis/mappers/individual.xml"/>
+		<mapper resource="mybatis/mappers/resume.xml"/>
+		<mapper resource="mybatis/mappers/resumeUpload.xml"/>
+		<mapper resource="mybatis/mappers/page.xml"/>
+		<mapper resource="mybatis/mappers/comNotice.xml"/>
+		<mapper resource="mybatis/mappers/boardBoard.xml"/>
+		<mapper resource="mybatis/mappers/boardComment.xml"/>
+		<mapper resource="mybatis/mappers/boardPage.xml"/>
+		<mapper resource="mybatis/mappers/boardUpload.xml"/>
+		<mapper resource="mybatis/mappers/jobposting.xml"/>
+		<mapper resource="mybatis/mappers/recentNotice.xml"/>
+		<mapper resource="mybatis/mappers/scrapNotice.xml"/>
+		<mapper resource="mybatis/mappers/comInfoUpload.xml"/>
+		<mapper resource="mybatis/mappers/cardPage.xml"/>
+		<mapper resource="mybatis/mappers/companyInfo.xml"/>
+		<mapper resource="mybatis/mappers/comBoardBoard.xml"/>
+		<mapper resource="mybatis/mappers/comBoardComment.xml"/>
+		<mapper resource="mybatis/mappers/comBoardPage.xml"/>
+		<mapper resource="mybatis/mappers/comBoardUpload.xml"/>
+		<mapper resource="mybatis/mappers/main.xml"/>
+	</mappers>
+</configuration>
+
+
+
+
+
+
+
+
+
+

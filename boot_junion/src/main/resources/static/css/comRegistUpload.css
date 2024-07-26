@@ -1,0 +1,392 @@
+:root 
+{
+  /* 컬러 모음 */
+  --main-color:#FFA500;
+  --color-black: #111;
+  --color-white: #fff;
+  --color-gray: #787878;
+  --input-gray: #e5e5ec;
+  --button-gray: #f7f7f7;
+  --border-color-gray: #dadada;
+  --font-size32: 32px;
+  --font-size24: 24px;
+  --font-size18: 18px;
+  --font-size16: 16px;
+  --font-size14: 14px;
+  --font-size12: 12px;
+}
+
+/* main */
+
+/* button
+{
+    cursor: pointer;
+} */
+
+main .mainInner
+{
+    justify-content: center;
+    margin: 0 auto;
+    display: flex;
+    max-width: 1200px;
+}
+
+main .mainInner .post .comImage
+{
+    width: 730px;
+    height: 500px;
+    background-color: var(--border-color-gray);
+    border: none;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    line-height: 30px;
+    gap: 10px;
+    cursor: pointer;
+    position: relative;    
+    
+    &:hover
+    {
+        background-color: var(--color-gray);
+    }
+    
+}
+
+#file
+{
+    display: none;
+}
+
+textarea
+{
+    resize: none;
+}
+
+
+.post
+{
+    margin-top: 140px;
+}
+
+
+
+.postContainer
+{
+    margin-top: 40px;
+}
+
+.postContainer .postValue .value,
+.postContainer .workDepart .value,
+.sectionTech .sectionTitle
+{
+    font-size: var(--font-size18);
+    align-content: center;
+    margin-top: 40px; 
+}
+
+.postContainer .postTitle,
+.postContainer .postCompany,
+.postContainer .postLocation,
+.postContainer .postPosition,
+.postContainer .people,
+.postContainer .department,
+.postContainer .job
+{
+    margin: 20px 0 20px 0;
+    width : 730px;
+    height: 50px;
+    padding: 15px 20px;
+    border: 1px solid var(--input-gray);
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: var(--font-size16);
+}
+
+.postContainer .location,
+.postContainer .career,
+.postContainer .type,
+.postContainer .salay,
+.postContainer .accept,
+.postContainer .work
+{
+    display: flex;
+    width: 100%;
+    margin-top: 40px;
+    gap: 20px;
+    align-content: center;
+}
+
+.postContainer .location .workLocation
+{
+    display: flex;
+    gap: 10px;
+}
+
+input[type=checkbox]
+{
+    margin-left: 20px;
+    padding: 50px;
+    align-items: center;
+    cursor: pointer;    
+}
+
+.postContainer .location .value,
+.postContainer .career .value,
+.postContainer .salay .value,
+.postContainer .accept .value,
+.postContainer .work .value
+{
+    font-size: var(--font-size16);
+    align-content: center;
+}
+
+.postContainer .workLocation .search_box .region,
+.postContainer .workLocation .search_box .constituency,
+.postContainer .salay .pay
+{
+    width: 150px;
+    height: 40px;
+    padding: 0 20px;
+    border: 1px solid var(--input-gray);
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: var(--font-size16);
+}
+
+.postContainer .salay .postPay,
+.postContainer .accept .date
+{
+    width: 270px;
+    height: 40px;
+    padding: 0 15px;
+    border: 1px solid var(--input-gray);
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: var(--font-size16);
+    gap: 10px;
+}
+.postContainer .accept .date
+{
+    text-align: center;
+}
+
+.salay .lowPay
+{
+    font-size: var(--font-size14);
+    color: var(--color-gray);
+    align-content: center;
+}
+
+.postContainer .postDesc
+{
+    margin-top: 20px;
+}
+
+.sectionTech .sectionBody
+{
+    display: grid;
+    max-width: 730px;
+    margin: 10px 0;
+}
+
+.sectionTech .sectionBody .techName
+{
+    min-width: 50px;
+}
+
+.Bodycon
+{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.sectionTech .Bodycon button.tech 
+{
+  margin: 10px 12px 10px 0;
+  border: 1px solid var(--input-gray);
+  border-radius: 6px;
+  padding: 12px 20px;
+  width: initial;
+  cursor: pointer;
+}
+.sectionTech .Bodycon button.tech.active
+{
+    background-color: var(--main-color);
+    color: var(--color-white);
+    cursor: pointer;
+}
+
+.postContainer .positioinDesc,
+.postContainer .workDesc,
+.postContainer .workRight,
+.postContainer .workGive,
+.postContainer .workBenefit
+{
+    margin: 10px 0;
+    width : 100%;
+    height: 150px;
+    padding: 16px 18px;
+    border: 1px solid var(--input-gray);
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: var(--font-size16);
+}
+
+.ok
+{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 40px 0;
+
+}
+
+.ok .posting
+{
+    border-radius: 6px;
+    padding: 12px 20px;
+    background-color: var(--main-color);
+    border: none;
+    color: var(--color-white);
+    min-width: 120px;
+    cursor: pointer;
+    font-size: var(--font-size16);
+
+}
+
+.building 
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.building > i 
+{
+    font-size: 24px;
+    position: absolute;
+    bottom: -50px;
+    right: 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:8px;
+}
+
+.noitceImage
+{
+    position: relative;
+    height: 500px;
+}
+
+label.imgAddLabel 
+{
+    position: absolute;
+    bottom: -22px;
+    right: 0;
+    /* font-size: 16px; */
+}
+
+label.imgAddLabel h3 
+{
+    font-weight: 300;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.uploadResult 
+{
+    width:100%;
+    height: 100%;
+}
+
+.uploadResult ul, .uploadResult ul li 
+{
+    width: 100%;
+    height: 100%;
+}
+
+.uploadResult ul li img
+{
+    width: 100%;
+    height: 500px;
+}
+
+.comNoticeImage li img 
+{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.imgDelete i 
+{
+    font-size: 24px;
+    position: absolute;
+    bottom: -50px;
+    right: 0;
+    font-size: 24px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:8px;
+    background: #fff;
+    z-index: 99;
+    cursor: pointer;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+
+/* Footer */
+footer 
+{
+    padding:50px 0;
+    border-top: 1px solid var(--border-color-gray);
+}
+
+.footerInner 
+{
+    margin:0 auto;
+    max-width: 1200px;
+    display: flex;    
+}
+
+.footerInner .f_conWrap 
+{
+    width: 50%;
+}
+
+.footerInner .left_conWrap .textWrap 
+{
+    font-size: var(--font-size14);
+    line-height: 24px;
+    margin-top: 20px;
+} 
+
+.footerInner .right_conWrap 
+{
+    text-align: right;
+}
+
+.footerInner .right_conWrap .textWrap 
+{
+    font-size: var(--font-size14);
+    line-height: 24px;
+}
+
+.footerInner .right_conWrap h3
+{
+    font-size:var(--font-size24);
+    font-weight: 500;
+    color: #222;
+    margin-bottom: 20px;
+}
